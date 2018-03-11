@@ -3,6 +3,10 @@
 <head>
 	<title>test 1</title>
 	<style type="text/css">
+		body{
+			padding: 0px;
+			margin:0px;
+		}
 		div {
 			width: 2000px;
 			height: 4000px;
@@ -11,6 +15,8 @@
 			border: 2px solid green;
 		}
 	</style>
+	<!---<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> 
 </head>
 <body>
 
@@ -19,7 +25,7 @@
 			<ul>
 				<li>browser name</li>
 				<li>file name (navigation)</li>
-				<li>browser width \& height</li>
+				<li>browser width & height</li>
 				<li>resizeing</li>
 				<li>mouse click</li>
 				<li>tabing</li>
@@ -39,6 +45,24 @@
 			return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
 			  (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
 			)
+		}
+
+		//---- AJAX call -----
+		var POSTURL = 'trackedUserData.php';
+		// Help function that makes an AJAX call transmitting data to school web server for processing
+		function ajaxRequest(data) {
+			try {
+				new XMLHttpRequest({
+				method: 'POST',
+				url: POSTURL,
+				data: 'search=' + encodeURIComponent(data),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+				},
+				});
+			} catch (ex1) {
+				console.log(ex1);
+			}
 		}
 		
 		window.addEventListener("load", function(){
@@ -94,6 +118,15 @@
 		    }
 		    console.log("click X == " + X);
 	    	console.log("click Y == " + Y);
+			//ajaxRequest(`${$X},${$Y}\n`);
+
+			$.ajax({
+				type: 'POST',
+				url: "trackedUserData.php",
+				data: { search: "X: " + X + ", Y: " + Y }
+			});
+
+
 		}, true);
 		
 		//TRACK TAB KLICK	
@@ -148,11 +181,12 @@
 		}
 
 		window.onload = function() {
-		    var interval = setInterval(mousemoveTracking, 100);//40ms
-		    setTimeout(function( ) { clearInterval( interval ); }, 5000);//just for now 
+		    //var interval = setInterval(mousemoveTracking, 100);//40ms
+		    //setTimeout(function( ) { clearInterval( interval ); }, 5000);//just for now 
 		}
 
-
+		
+		
 
 	</script>
 </body>
