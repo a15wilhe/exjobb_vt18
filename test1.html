@@ -37,7 +37,7 @@
 
 	<script type="text/javascript">
 		console.log( "tracking script");
-var HREF;
+var HREF = window.location.href;
 
 
 		//RANDOM USER SESSION ID - SESSIONSTORAGE, UUIDV4
@@ -67,13 +67,13 @@ var HREF;
 		
 		window.addEventListener("load", function(){
 			//fetch sessionStorage uuid
-			var uuid = sessionStorage.getItem("autTestingUUID");
-			console.log("uuid (start) == " + uuid);
+			//var uuid = sessionStorage.getItem("autTestingUUID");
+			//console.log("uuid (start) == " + uuid);
 
 			// no sessionID == new user, Generate a new user a SessionID, fetch browser and window info		
-			if (uuid==null) {
-				sessionStorage.setItem("autTestingUUID", uuidv4());
-				console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
+			//if (uuid==null) {
+				//sessionStorage.setItem("autTestingUUID", uuidv4());
+				//console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
 
 				//TRACK USER BROWSER
 				console.log(navigator.appCodeName); //Browser name
@@ -96,7 +96,7 @@ var HREF;
 				//console.log(winScreenW);
 				var winScreenH = screen.height;
 				//console.log(winScreenH);
-			}
+			//}
 		});
 		
 		//TRACK RESIZE
