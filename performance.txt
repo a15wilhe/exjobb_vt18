@@ -1,1 +1,0 @@
-time: 1520942169138, page: http://localhost/exjobb_vt18/test1.html

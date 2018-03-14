@@ -37,8 +37,7 @@
 
 	<script type="text/javascript">
 		console.log( "tracking script");
-		//file:///C:/Users/William/Desktop/Exjobb_Inl1/Implementation/Steg1/test1.html
-
+var HREF = window.location.href;
 
 
 		//RANDOM USER SESSION ID - SESSIONSTORAGE, UUIDV4
@@ -68,21 +67,23 @@
 		
 		window.addEventListener("load", function(){
 			//fetch sessionStorage uuid
-			var uuid = sessionStorage.getItem("autTestingUUID");
-			console.log("uuid (start) == " + uuid);
+			//var uuid = sessionStorage.getItem("autTestingUUID");
+			//console.log("uuid (start) == " + uuid);
 
 			// no sessionID == new user, Generate a new user a SessionID, fetch browser and window info		
-			if (uuid==null) {
-				sessionStorage.setItem("autTestingUUID", uuidv4());
-				console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
+			//if (uuid==null) {
+				//sessionStorage.setItem("autTestingUUID", uuidv4());
+				//console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
 
 				//TRACK USER BROWSER
 				console.log(navigator.appCodeName); //Browser name
 	    		console.log(navigator.userAgent); //overhead
 
-	    		//TRACK USER LOCATION - PATHNAME OR HREF
+				//TRACK USER LOCATION - PATHNAME OR HREF
+				HREF = window.location.href;
 				console.log("pathname == "+ window.location.pathname);
-				console.log("href == "+ window.location.href);
+				console.log("href == "+ HREF);
+				
 
 				//TRACK WINDOW PROP/ATTR - 
 				//what is visable for user
@@ -95,7 +96,7 @@
 				//console.log(winScreenW);
 				var winScreenH = screen.height;
 				//console.log(winScreenH);
-			}
+			//}
 		});
 		
 		//TRACK RESIZE
@@ -123,10 +124,19 @@
 
 			$.ajax({
 				type: 'POST',
+				url: 'trackedUserData.php',
+				data: { href: escape(HREF),
+						x: escape(X),
+						y: escape(Y),
+						xscroll: escape(X),
+						yscroll: escape(Y)
+				}	
+			});
+			/*$.ajax({
+				type: 'POST',
 				url: "trackedUserData.php",
 				data: { search: "X: " + X + ", Y: " + Y }
-			});
-
+			});*/
 
 		}, true);
 		

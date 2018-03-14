@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS autDB;
 CREATE DATABASE IF NOT EXISTS autDB;
 USE autDB;
 
-CREATE USER 'autUser'@'localhost' IDENTIFIED BY 'maninthemoon';
+CREATE USER IF NOT EXISTS 'autUser'@'localhost' IDENTIFIED BY 'maninthemoon';
 GRANT ALL PRIVILEGES ON autDB.* TO 'autUser'@'localhost';
 FLUSH PRIVILEGES;
 
@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS click_table (
 CREATE TABLE IF NOT EXISTS mousemove_table (
 	logID INT AUTO_INCREMENT,
 	href TEXT,
-	mouseX TEXT,
-	mouseY TEXT,
+	mouseX INT,
+	mouseY INT,
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (logID)
 );
