@@ -545,7 +545,7 @@
 
         echo "<div id='installationProgressWrap'>";
         # Test permissions on directory before starting installation.
-        if(!mkdir("{$putFileHere}/testPermissionsForInstallationToStartDir", 0777)) {
+        /*if(!mkdir("{$putFileHere}/testPermissionsForInstallationToStartDir", 0777)) {
             $errors++;
             exit ("<span id='failText' />Permissions on {$putFileHere} not set correctly, please restart the installation.</span><br>
                     <a title='Try again' href='install.php' class='returnButton'>Try again.</a>");
@@ -557,19 +557,19 @@
             } else {
                 echo "<span id='successText' />Permissions on {$putFileHere} set correctly.</span><br>";
             }
-        }
+        }*/
         $completedSteps++;
         echo "<script>updateProgressBar({$completedSteps});</script>";
 
         # Check if all fields are filled.
         $fields = array("newUser", "password", "DBName", "hostname", "mysqlRoot", "rootPwd");
-        foreach ($fields AS $fieldname) { //Loop trough each field
+        /*foreach ($fields AS $fieldname) { //Loop trough each field
             if (!isset($_POST[$fieldname]) || empty($_POST[$fieldname])) {
                 $errors++;
                 exit ("<span id='failText' />Please fill all fields.</span><br>
                     <a title='Try again' href='install.php' class='returnButton'>Try again.</a>");
             }
-        }
+        }*/
 
         # Only create DB if box is ticked.
         if (isset($_POST["createDB"]) && $_POST["createDB"] == 'Yes') {

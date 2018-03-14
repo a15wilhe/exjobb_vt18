@@ -1,4 +1,4 @@
-drop database imperious;
+drop database IF EXISTS imperious;
 create database imperious;
 use imperious;
 
@@ -96,10 +96,11 @@ CREATE TABLE listentries (
 	moment			INT UNSIGNED,
 	gradesystem 	TINYINT(1),
 	highscoremode		INT DEFAULT 0,
-	CONSTRAINT 		pk_listentries PRIMARY KEY(lid),
+	PRIMARY KEY(lid),
 
 /*	FOREIGN KEY(code_id) REFERENCES codeexample(exampleid) ON UPDATE NO ACTION ON DELETE SET NULL, */
-	CONSTRAINT fk_listentries_joins_user FOREIGN KEY(creator) REFERENCES user(uid) ON DELETE NO ACTION ON UPDATE NO ACTION, FOREIGN KEY(cid) REFERENCES course(cid) ON DELETE CASCADE ON UPDATE CASCADE
+	 FOREIGN KEY(creator) REFERENCES user(uid),
+     FOREIGN KEY(cid) REFERENCES course(cid)
 
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB;
 

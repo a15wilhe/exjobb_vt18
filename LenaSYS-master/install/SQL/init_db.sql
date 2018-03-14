@@ -1,3 +1,9 @@
+/*CREATE USER 'test1'@'localhost' IDENTIFIED BY 'test1';*/
+
+drop database IF EXISTS imperious;
+create database imperious;
+use imperious;
+
 
 /* user contains the users of the system and related information */
 
