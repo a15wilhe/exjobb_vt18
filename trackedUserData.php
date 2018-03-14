@@ -25,6 +25,7 @@
                 }
                                         
         }
+        
         define("DB_USER","autUser");
         define("DB_PASSWORD","maninthemoon");
         define("DB_HOST","localhost");
@@ -53,7 +54,6 @@
         $yscroll=getpostAJAX("yscroll");
 
         try{
-                // Save booking.
                 $querystring="INSERT INTO click_table(href,x,y,xscroll,yscroll) values (:href,:x,:y,:xscroll,:yscroll);";
                 $stmts = $pdo->prepare($querystring);
                 $stmts->bindParam(':href',$href);
