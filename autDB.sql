@@ -28,3 +28,5 @@ CREATE TABLE IF NOT EXISTS mousemove_table (
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (logID)
 );
+
+Select * from click_table;

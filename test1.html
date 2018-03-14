@@ -37,8 +37,7 @@
 
 	<script type="text/javascript">
 		console.log( "tracking script");
-		//file:///C:/Users/William/Desktop/Exjobb_Inl1/Implementation/Steg1/test1.html
-
+var HREF;
 
 
 		//RANDOM USER SESSION ID - SESSIONSTORAGE, UUIDV4
@@ -80,9 +79,11 @@
 				console.log(navigator.appCodeName); //Browser name
 	    		console.log(navigator.userAgent); //overhead
 
-	    		//TRACK USER LOCATION - PATHNAME OR HREF
+				//TRACK USER LOCATION - PATHNAME OR HREF
+				HREF = window.location.href;
 				console.log("pathname == "+ window.location.pathname);
-				console.log("href == "+ window.location.href);
+				console.log("href == "+ HREF);
+				
 
 				//TRACK WINDOW PROP/ATTR - 
 				//what is visable for user
@@ -123,10 +124,19 @@
 
 			$.ajax({
 				type: 'POST',
+				url: 'trackedUserData.php',
+				data: { href: escape(HREF),
+						x: escape(X),
+						y: escape(Y),
+						xscroll: escape(X),
+						yscroll: escape(Y)
+				}	
+			});
+			/*$.ajax({
+				type: 'POST',
 				url: "trackedUserData.php",
 				data: { search: "X: " + X + ", Y: " + Y }
-			});
-
+			});*/
 
 		}, true);
 		
