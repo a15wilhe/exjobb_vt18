@@ -3,7 +3,7 @@ CREATE DATABASE IF NOT EXISTS autDB;
 USE autDB;
 
 CREATE USER 'autUser'@'localhost' IDENTIFIED BY 'maninthemoon';
-GRANT ALL PRIVILEGES ON * . * TO 'autUser'@'localhost';
+GRANT ALL PRIVILEGES ON autDB.* TO 'autUser'@'localhost';
 FLUSH PRIVILEGES;
 
 
