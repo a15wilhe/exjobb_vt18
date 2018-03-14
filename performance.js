@@ -2,7 +2,7 @@ window.addEventListener("load", function(){//maybe change to jQuery document.rea
      // end timer
     var endTime = (new Date).getTime();
 
-    // calculate difference in time
+    // calculate difference in time//add to check that sS is not null
     var diffTime = endTime - sessionStorage.getItem('aut-start-time');
     var page = window.location.href;
     //ajax to server

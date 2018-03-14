@@ -87,7 +87,7 @@ function swizzleArray(&$filepost) {
 // connect log database - Open log database and create tables if they do not exist
 //---------------------------------------------------------------------------------------------------------------
 
-$log_db = new PDO('sqlite:../../log/loglena4.db');
+/*$log_db = new PDO('sqlite:../../log/loglena4.db');
 $sql = '
 	CREATE TABLE IF NOT EXISTS logEntries (
 		id INTEGER PRIMARY KEY,
@@ -152,7 +152,7 @@ $sql = '
 	);
 ';
 $log_db->exec($sql);
-
+*/
 //------------------------------------------------------------------------------------------------
 // logEvent - Creates a new log entry in the log database (log.db, located at the root directory)
 //------------------------------------------------------------------------------------------------
