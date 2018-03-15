@@ -11,7 +11,7 @@ OR die('Could not connect to MySQL: ' .
 mysqli_connect_error());
 
 // Create a query for the database
-$query = "SELECT logID, href, x, y, xscroll, yscroll, TIMESTAMP FROM click_table";
+$query = "SELECT logID, href, clientX, clientY, pageX, pageY, TIMESTAMP FROM click_table";
 
 // Get a response from the database by sending the connection
 // and the query
@@ -38,10 +38,10 @@ while($row = mysqli_fetch_array($response)){
 echo '<tr><td align="left">' . 
 $row['logID'] . '</td><td align="left">' . 
 $row['href'] . '</td><td align="left">' .
-$row['x'] . '</td><td align="left">' . 
-$row['y'] . '</td><td align="left">' .
-$row['xscroll'] . '</td><td align="left">' . 
-$row['yscroll'] . '</td><td align="left">' .
+$row['clientX'] . '</td><td align="left">' . 
+$row['clientY'] . '</td><td align="left">' .
+$row['pageX'] . '</td><td align="left">' . 
+$row['pageY'] . '</td><td align="left">' .
 $row['TIMESTAMP'] . '</td><td align="left">';
 
 echo '</tr>';

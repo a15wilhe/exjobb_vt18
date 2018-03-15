@@ -12,10 +12,10 @@ FLUSH PRIVILEGES;
 CREATE TABLE IF NOT EXISTS click_table (
 	logID INT AUTO_INCREMENT,	
     href TEXT,
-	x INT,
-	y INT,
-	xscroll INT,
-	yscroll INT,
+	clientX INT,
+	clientY INT,
+	pageX INT,
+	pageY INT,
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (logID)
 );
