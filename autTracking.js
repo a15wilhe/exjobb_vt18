@@ -2,6 +2,7 @@ $( document ).ready(function() {
 console.log( "tracking script");
 var HREF = window.location.href;
 
+var tabs = 0;
 
 //RANDOM USER SESSION ID - SESSIONSTORAGE, UUIDV4
 function uuidv4() {
@@ -12,7 +13,6 @@ function uuidv4() {
 
 //---- AJAX call -----
 var POSTURL = 'trackedUserData.php';
-// Help function that makes an AJAX call transmitting data to school web server for processing
 function ajaxRequest(data) {
     try {
         new XMLHttpRequest({
@@ -38,7 +38,7 @@ window.addEventListener("load", function(){
         //sessionStorage.setItem("autTestingUUID", uuidv4());
         //console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
 
-        //TRACK USER BROWSER
+        //TRACK USER BROWSER //track specific browser
         console.log(navigator.appCodeName); //Browser name
         console.log(navigator.userAgent); //overhead
 
@@ -59,6 +59,19 @@ window.addEventListener("load", function(){
         //console.log(winScreenW);
         var winScreenH = screen.height;
         //console.log(winScreenH);
+
+        $.ajax({
+            type: 'POST',
+            url: 'trackedUserData/onload.php',
+            data: { href: escape(HREF),
+                    appCodeName: escape(navigator.appCodeName),
+                    userAgent: escape(navigator.userAgent),
+                    ww: escape(winInnerW),
+                    wh: escape(winInnerH),
+                    sw: escape(winScreenW),
+                    sh: escape(winScreenH)
+            }	
+        });
     //}
 });
 
@@ -81,31 +94,18 @@ document.body.addEventListener("click", function(e) {
         pageX = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
         pageY = e.clientY + document.body.scrollTop + document.documentElement.scrollTop; 
     }
-    var clientX = e.clientX;
-    var clientY = e.clientY;
-    console.log("click - pageX==" + pageX + "clientX==" + clientX);
-    console.log("click - pageY==" + pageY + "clientY==" + clientY);
-    //ajaxRequest(`${$X},${$Y}\n`);
 
     $.ajax({
         type: 'POST',
-        url: 'trackedUserData.php',
+        url: 'trackedUserData/clicks.php',
         data: { href: escape(HREF),
-                clientX: escape(clientX),
-                clientY: escape(clientY),
                 pageX: escape(pageX),
                 pageY: escape(pageY)
         }	
     });
-    /*$.ajax({
-        type: 'POST',
-        url: "trackedUserData.php",
-        data: { search: "X: " + X + ", Y: " + Y }
-    });*/
-
 }, true);
 
-//TRACK TAB KLICK	
+//TRACK TAB CLICK	
 document.onkeydown = TabExample;
 
 function TabExample(e) {
@@ -113,6 +113,14 @@ function TabExample(e) {
     var tabKey = 9;
     if(e.keyCode == tabKey) {
         console.log("tabing");
+        ++tabs;
+        $.ajax({
+            type: 'POST',
+            url: 'trackedUserData/tabs.php',
+            data: { href: escape(HREF),
+                    tabs: escape(tabs)
+            }	
+        });
     }
 }
 
@@ -144,7 +152,7 @@ window.addEventListener("scroll", function() {
     throttlescroll = setTimeout(function(){amountscrolled()}, 50)
 }, false)
 
-//TRACK MOUSEMOVEMENT
+//TRACK MOUSEMOVEMENT //change logging to not window, body
 document.body.addEventListener("mousemove", function(e) { 
     var event = e || window.event;
     window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
@@ -154,10 +162,18 @@ document.body.addEventListener("mousemove", function(e) {
 function mousemoveTracking() {
     console.log("MM X == " + window.mouseX);
     console.log("MM Y == " + window.mouseY);
+    $.ajax({
+        type: 'POST',
+        url: 'trackedUserData/mousemove.php',
+        data: { href: escape(HREF),
+                mouseX: escape(window.mouseX),
+                mouseY: escape(window.mouseY)
+        }	
+    });
 }
 
 window.onload = function() {
-    //var interval = setInterval(mousemoveTracking, 100);//40ms
+    //var interval = setInterval(mousemoveTracking, 100);
     //setTimeout(function( ) { clearInterval( interval ); }, 5000);//just for now 
 }
 });

@@ -47,38 +47,6 @@ function getpostAJAX($param) {
         return $ret;
 }
 
-$href=getpostAJAX("href");
-$clientX=getpostAJAX("clientX");
-$clientY=getpostAJAX("clientY");
-$pageX=getpostAJAX("pageX");
-$pageY=getpostAJAX("pageY");
-
-try{
-        $querystring="INSERT INTO click_table(href,clientX,clientY,pageX,pageY) values (:href,:clientX,:clientY,:pageX,:pageY);";
-        $stmts = $pdo->prepare($querystring);
-        $stmts->bindParam(':href',$href);
-        $stmts->bindParam(':clientX',$clientX);
-        $stmts->bindParam(':clientY',$clientY);
-        $stmts->bindParam(':pageX',$pageX);
-        $stmts->bindParam(':pageY',$pageY);
-        $stmts->execute();
-
-        //print console log
-        $test1 = 'php running';
-        print '
-        <script type="text/javascript">
-        var console;        
-        console = "'.$test1 + $x.'"
-        console.log(console);
-        </script>';		
-} catch (PDOException $e) {
-        err("Error!: ".$e->getMessage()."<br/>");
-        die();
-}
 
 
-/*      $fp = fopen("trackedUserData.txt", "a");
-fputs ($fp, $_POST['search']. "\n");
-fclose ($fp);
-*/
 ?>

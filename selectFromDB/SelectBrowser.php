@@ -11,7 +11,7 @@ OR die('Could not connect to MySQL: ' .
 mysqli_connect_error());
 
 // Create a query for the database
-$query = "SELECT logID, href, clientX, clientY, pageX, pageY, TIMESTAMP FROM click_table";
+$query = "SELECT logID, href, appCodeName, userAgent, ww, wh, sw, sh, TIMESTAMP FROM browser_table";
 
 // Get a response from the database by sending the connection
 // and the query
@@ -25,10 +25,12 @@ cellspacing="5" cellpadding="8">
 
 <tr><td align="left"><b>ID</b></td>
 <td align="left"><b>href</b></td>
-<td align="left"><b>x</b></td>
-<td align="left"><b>y</b></td>
-<td align="left"><b>x scroll</b></td>
-<td align="left"><b>y scroll</b></td>
+<td align="left"><b>appCodeName</b></td>
+<td align="left"><b>userAgent</b></td>
+<td align="left"><b>ww</b></td>
+<td align="left"><b>wh</b></td>
+<td align="left"><b>sw</b></td>
+<td align="left"><b>sh</b></td>
 <td align="left"><b>TIMESTAMP</b></td></tr>';
 
 // mysqli_fetch_array will return a row of data from the query
@@ -38,10 +40,12 @@ while($row = mysqli_fetch_array($response)){
 echo '<tr><td align="left">' . 
 $row['logID'] . '</td><td align="left">' . 
 $row['href'] . '</td><td align="left">' .
-$row['clientX'] . '</td><td align="left">' . 
-$row['clientY'] . '</td><td align="left">' .
-$row['pageX'] . '</td><td align="left">' . 
-$row['pageY'] . '</td><td align="left">' .
+$row['appCodeName'] . '</td><td align="left">' . 
+$row['userAgent'] . '</td><td align="left">' .
+$row['ww'] . '</td><td align="left">' .
+$row['wh'] . '</td><td align="left">' .
+$row['sw'] . '</td><td align="left">' .
+$row['sh'] . '</td><td align="left">' .
 $row['TIMESTAMP'] . '</td><td align="left">';
 
 echo '</tr>';
@@ -59,7 +63,7 @@ echo mysqli_error($dbc);
 
 if(isset($_POST['submit_button']))
 {
-    mysqli_query($dbc, 'TRUNCATE TABLE `click_table`');
+    mysqli_query($dbc, 'TRUNCATE TABLE `browser_table`');
     exit();
 }
 // Close connection to the database
