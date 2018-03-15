@@ -15,4 +15,3 @@ Examensarbete vid Högskolan i Skövde, Webbutveckling - Programmering
     3.scroll
 4. Grupp 4
     1. komprimering/selektion av musrörelse
-    2. (komprimering/selektion av musrörelse)
