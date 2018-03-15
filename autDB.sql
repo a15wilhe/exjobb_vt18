@@ -12,10 +12,8 @@ FLUSH PRIVILEGES;
 CREATE TABLE IF NOT EXISTS click_table (
 	logID INT AUTO_INCREMENT,	
     href TEXT,
-	x INT,
-	y INT,
-	xscroll INT,
-	yscroll INT,
+	pageX INT,
+	pageY INT,
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (logID)
 );
@@ -23,10 +21,10 @@ CREATE TABLE IF NOT EXISTS click_table (
 CREATE TABLE IF NOT EXISTS tabing_table (
 	logID INT AUTO_INCREMENT,
 	href TEXT,
-    tabs INT,/* count up total amount of tabs per page*/
+    tabs INT,
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (logID)
-);
+);/* count up total amount of tabs per page*/
 
 CREATE TABLE IF NOT EXISTS browser_table (
 	logID INT AUTO_INCREMENT,
