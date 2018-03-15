@@ -1,0 +1,3 @@
+time: NaN, page: http://localhost/exjobb_vt18/test1.html
+time: 255, page: http://localhost/exjobb_vt18/test1.html
+time: 15109, page: http://localhost/exjobb_vt18/test1.html
