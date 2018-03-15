@@ -1,7 +1,7 @@
 # exjobb_vt18 
 ## Prestandautvärdering av automatiserad användbarhetstestare
-Examensarbete vid Högskolan i Skövde
-######Implementation
+Examensarbete vid Högskolan i Skövde, Webbutveckling - Programmering
+###### Implementation
 1. baseline
     1. Ingen spårning
 2. Grupp 2
