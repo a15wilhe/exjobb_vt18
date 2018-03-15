@@ -177,3 +177,18 @@ window.onload = function() {
     //setTimeout(function( ) { clearInterval( interval ); }, 5000);//just for now 
 }
 });
+
+//TRACK HOVER OVER 100MS
+var lastTarget;
+var startTimeHover;
+document.body.addEventListener("mouseover", function(e) { 
+    //Get target & start timer
+    
+    
+}, true);
+
+//on mouseleave, check time is over 100ms, check if same target then log
+document.body.addEventListener("mouseout", function(e) {   
+
+    
+}, true);
