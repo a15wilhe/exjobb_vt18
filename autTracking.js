@@ -77,11 +77,9 @@ window.addEventListener("load", function(){
 
 //TRACK RESIZE
 window.addEventListener('resize', function(){
-    console.log("RESIZED");
     var winInnerW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    console.log("innerWidth == "+ winInnerW);
     var winInnerH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-    console.log("innerHeight == "+ winInnerH);
+    console.log("RESIZED --- innerWidth == "+ winInnerW + "innerHeight == "+ winInnerH);
 });
 
 //client == window, page == document, screen == screen
@@ -176,7 +174,7 @@ window.onload = function() {
     //var interval = setInterval(mousemoveTracking, 100);
     //setTimeout(function( ) { clearInterval( interval ); }, 5000);//just for now 
 }
-});
+
 
 //TRACK HOVER OVER 100MS
 var lastTarget;
@@ -192,3 +190,4 @@ document.body.addEventListener("mouseout", function(e) {
 
     
 }, true);
+});//End of document.ready
