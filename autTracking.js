@@ -158,8 +158,7 @@ document.body.addEventListener("mousemove", function(e) {
 }, true);
 
 function mousemoveTracking() {
-    console.log("MM X == " + window.mouseX);
-    console.log("MM Y == " + window.mouseY);
+    console.log("MM --- X == " + window.mouseX + "Y == " + window.mouseY);
     $.ajax({
         type: 'POST',
         url: 'trackedUserData/mousemove.php',
@@ -181,13 +180,44 @@ var lastTarget;
 var startTimeHover;
 document.body.addEventListener("mouseover", function(e) { 
     //Get target & start timer
-    
-    
+    //lastTarget = e.target;
+    currentTarget = e.target;
+    startTimeHover = (new Date).getTime();
+    var start = Date.now();
+    console.log("starting timer...");
+    setTimeout(function() {
+        console.log("over 1 sec");
+      
+        // expected output : seconds elapsed = 2
+      }, 1000);
+
+    console.log(e.target);
 }, true);
 
-//on mouseleave, check time is over 100ms, check if same target then log
-document.body.addEventListener("mouseout", function(e) {   
+/* function handler(e) {
+    var target = $(e.target);
+    var elId = target.attr('id');
+    if( target.is("#list1") ) {
+       console.log('The mouse was over'+ elId );
+    }
+}
+$("#list1").mouseleave(handler); 
 
+$(document).on('mouseover', 'li', function(e) {
+    console.log($(e.target).attr('class'));
+});*/
+
+//on mouseleave, check time is over 100ms, check if same target then log
+document.body.addEventListener("mouseout", function(e) {
+    var timenow = (new Date).getTime();
+    var startTimeHover100 = startTimeHover + 100;
+    if (startTimeHover > startTimeHover100) {
+        console.log("over 100ms");
     
+        if (e.target == lastTarget) {
+            console.log("same target over 100ms");
+        }
+    }
+
 }, true);
 });//End of document.ready
