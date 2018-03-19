@@ -181,17 +181,19 @@ var startTimeHover;
 document.body.addEventListener("mouseover", function(e) { 
     //Get target & start timer
     //lastTarget = e.target;
-    currentTarget = e.target;
+    var currentTarget = e.target;
     startTimeHover = (new Date).getTime();
-    var start = Date.now();
+    //var start = Date.now();
+
     console.log("starting timer...");
     setTimeout(function() {
-        console.log("over 1 sec");
-      
-        // expected output : seconds elapsed = 2
-      }, 1000);
+        //console.log("over 1 sec");
+        if (e.target == currentTarget) {
+            console.log("same target over 1000ms");
+        }
+    }, 1000);
 
-    console.log(e.target);
+    //console.log(e.target);
 }, true);
 
 /* function handler(e) {
@@ -212,12 +214,13 @@ document.body.addEventListener("mouseout", function(e) {
     var timenow = (new Date).getTime();
     var startTimeHover100 = startTimeHover + 100;
     if (startTimeHover > startTimeHover100) {
-        console.log("over 100ms");
+        //console.log("over 100ms");
     
         if (e.target == lastTarget) {
-            console.log("same target over 100ms");
+           // console.log("same target over 100ms");
         }
     }
 
 }, true);
+
 });//End of document.ready
