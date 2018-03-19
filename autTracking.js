@@ -59,7 +59,6 @@ window.addEventListener("load", function(){
                 sh: escape(winScreenH)
         }	
     });
-    //}
 });
 
 //TRACK RESIZE
