@@ -38,34 +38,21 @@ window.addEventListener("load", function(){
         //sessionStorage.setItem("autTestingUUID", uuidv4());
         //console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
 
-        //TRACK USER BROWSER //track specific browser
-        console.log(navigator.appCodeName); //Browser name
-        console.log(navigator.userAgent); //overhead
-
-        //TRACK USER LOCATION - PATHNAME OR HREF
-        HREF = window.location.href;
-        console.log("pathname == "+ window.location.pathname);
-        console.log("href == "+ HREF);
         
+        HREF = window.location.href;
 
-        //TRACK WINDOW PROP/ATTR - 
-        //what is visable for user
         var winInnerW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        //console.log(winInnerW);
         var winInnerH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-        //console.log(winInnerH);
 
         var winScreenW = screen.width;
-        //console.log(winScreenW);
         var winScreenH = screen.height;
-        //console.log(winScreenH);
 
         $.ajax({
             type: 'POST',
             url: 'trackedUserData/onload.php',
             data: { href: escape(HREF),
                     appCodeName: escape(navigator.appCodeName),
-                    userAgent: escape(navigator.userAgent),
+                    userAgent: escape(navigator.appVersion),
                     ww: escape(winInnerW),
                     wh: escape(winInnerH),
                     sw: escape(winScreenW),
@@ -80,6 +67,7 @@ window.addEventListener('resize', function(){
     var winInnerW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     var winInnerH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     console.log("RESIZED --- innerWidth == "+ winInnerW + "innerHeight == "+ winInnerH);
+    
 });
 
 //client == window, page == document, screen == screen
@@ -175,8 +163,8 @@ window.onload = function() {
 } */
 
 //TRACK HOVER OVER 100MS
-//Working incorrect, counting up for all mouseover events till last event is 1sec. Maybe change to array for lastTarget
-var lastTarget;
+//Working bit incorrect
+/* var lastTarget;
 var startTimeHover;
 document.body.addEventListener("mouseover", function(e) { 
     //Get target & start timer
@@ -200,9 +188,9 @@ document.body.addEventListener("mouseout", function(e) {
     if (difftime > 0) {
         console.log(difftime);
     }
-}, true);
+}, true); */
 
-//TRACK COMPRESSION/SELECTION OF MOUSEMOVE
+/* //TRACK COMPRESSION/SELECTION OF MOUSEMOVE
 document.body.addEventListener("mousemove", function(e) { 
     var event = e || window.event;
     window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
@@ -217,16 +205,16 @@ document.body.addEventListener("mousemove", function(e) {
         //compare same pos, then ajax
         if (window.mouseX == locationX && window.mouseY == locationY) {
             //console.log("same pos - 40ms");
-           /*  $.ajax({
+             $.ajax({
             type: 'POST',
             url: 'trackedUserData/mousemove.php',
             data: { href: escape(HREF),
                     mouseX: escape(window.mouseX),
                     mouseY: escape(window.mouseY)
-           });	 */
+           });	 
         }
     }, 40);
     
-}, true);
+}, true); */
 
 });//End of document.ready
