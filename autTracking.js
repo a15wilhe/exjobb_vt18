@@ -66,14 +66,19 @@ window.addEventListener("load", function(){
 window.addEventListener('resize', function(){
     var winInnerW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     var winInnerH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+    var winScreenW = screen.width;
+    var winScreenH = screen.height;
     console.log("RESIZED --- innerWidth == "+ winInnerW + "innerHeight == "+ winInnerH);
 
     $.ajax({
         type: 'POST',
         url: 'trackedUserData/resize.php',
         data: { href: escape(HREF),
-                ww: escape(winInnerW),
-                wh: escape(winInnerH)
+            ww: escape(winInnerW),
+            wh: escape(winInnerH),
+            sw: escape(winScreenW),
+            sh: escape(winScreenH)
         }	
     });
 });
