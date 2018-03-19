@@ -223,17 +223,16 @@ document.body.addEventListener("mousemove", function(e) {
     setTimeout(function(){ 
         //compare same pos, then ajax
         if (window.mouseX == locationX && window.mouseY == locationY) {
-            console.log("same pos - 40ms");
-            $.ajax({
+            //console.log("same pos - 40ms");
+           /*  $.ajax({
             type: 'POST',
             url: 'trackedUserData/mousemove.php',
             data: { href: escape(HREF),
                     mouseX: escape(window.mouseX),
                     mouseY: escape(window.mouseY)
-            }	
-        });
+           });	 */
         }
-     }, 40);
+    }, 40);
     
 }, true);
 
