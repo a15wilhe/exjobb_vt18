@@ -176,38 +176,31 @@ window.onload = function() {
 
 //TRACK HOVER OVER 100MS
 //Working incorrect, counting up for all mouseover events till last event is 1sec. Maybe change to array for lastTarget
-/* var lastTarget;
+var lastTarget;
 var startTimeHover;
 document.body.addEventListener("mouseover", function(e) { 
     //Get target & start timer
-    var currentTarget = e.target;
+    //var currentTarget = e.target;
+    lastTarget = e.target;
     startTimeHover = (new Date).getTime();
-    //var start = Date.now();
 
-    //console.log("starting timer...");
     setTimeout(function() {
         //console.log("over 1 sec");
-        if (e.target == currentTarget) {
-            //console.log("same target over 1000ms");
+        if (e.target == lastTarget) {
+            console.log("same target over 1000ms");
+            //console.log(e.target);
         }
-    }, 1000);
-
-    //console.log(e.target);
+    }, 100);
 }, true);
 
 //on mouseleave, check time is over 100ms, check if same target then log
 document.body.addEventListener("mouseout", function(e) {
     var timenow = (new Date).getTime();
-    var startTimeHover100 = startTimeHover + 100;
-    if (startTimeHover > startTimeHover100) {
-        //console.log("over 100ms");
-    
-        if (e.target == lastTarget) {
-           // console.log("same target over 100ms");
-        }
+    var difftime = timenow - startTimeHover;
+    if (difftime > 0) {
+        console.log(difftime);
     }
-
-}, true); */
+}, true);
 
 //TRACK COMPRESSION/SELECTION OF MOUSEMOVE
 document.body.addEventListener("mousemove", function(e) { 
