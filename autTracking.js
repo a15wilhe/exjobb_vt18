@@ -151,14 +151,14 @@ window.addEventListener("scroll", function() {
 }, false)
 
 //TRACK MOUSEMOVEMENT //change logging to not window, body
-document.body.addEventListener("mousemove", function(e) { 
+/* document.body.addEventListener("mousemove", function(e) { 
     var event = e || window.event;
     window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
     window.mouseY = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
 }, true);
 
 function mousemoveTracking() {
-    console.log("MM --- X == " + window.mouseX + "Y == " + window.mouseY);
+    //console.log("MM --- X == " + window.mouseX + " Y == " + window.mouseY);
     $.ajax({
         type: 'POST',
         url: 'trackedUserData/mousemove.php',
@@ -172,7 +172,7 @@ function mousemoveTracking() {
 window.onload = function() {
     //var interval = setInterval(mousemoveTracking, 100);
     //setTimeout(function( ) { clearInterval( interval ); }, 5000);//just for now 
-}
+} */
 
 //TRACK HOVER OVER 100MS
 //Working incorrect, counting up for all mouseover events till last event is 1sec. Maybe change to array for lastTarget
@@ -209,7 +209,42 @@ document.body.addEventListener("mouseout", function(e) {
 
 }, true); */
 
-//TRACK COMPRESSION/SELEKTION OF MOUSEMOVE
+//TRACK COMPRESSION/SELECTION OF MOUSEMOVE
+var locationX;
+var locationY;
+document.body.addEventListener("mousemove", function(e) { 
+    var event = e || window.event;
+    window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+    window.mouseY = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    console.log("MM --- X == " + window.mouseX + " Y == " + window.mouseY);
+    
+    //Get pos
+    locationX = window.mouseX;
+    locationY = window.mouseY;
 
+    //wait 40ms
+    setTimeout(function(){ 
+        //compare same pos, then ajax
+        if (window.mouseX == locationX && window.mouseY == locationY) {
+            console.log("same pos - 40ms");
+            /* $.ajax({
+            type: 'POST',
+            url: 'trackedUserData/mousemove.php',
+            data: { href: escape(HREF),
+                    mouseX: escape(window.mouseX),
+                    mouseY: escape(window.mouseY)
+            }	
+        }); */
+        }
+
+        
+     }, 1000);
+    
+}, true);
+
+window.onload = function() {
+    var interval = setInterval(mousemoveTrackingCompression, 500);
+    setTimeout(function( ) { clearInterval( interval ); }, 5000);//just for now 
+}
 
 });//End of document.ready
