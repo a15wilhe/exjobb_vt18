@@ -37,28 +37,28 @@ window.addEventListener("load", function(){
     //if (uuid==null) {
         //sessionStorage.setItem("autTestingUUID", uuidv4());
         //console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
-
+    //}
         
-        HREF = window.location.href;
+    HREF = window.location.href;
 
-        var winInnerW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-        var winInnerH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    var winInnerW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var winInnerH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
-        var winScreenW = screen.width;
-        var winScreenH = screen.height;
+    var winScreenW = screen.width;
+    var winScreenH = screen.height;
 
-        $.ajax({
-            type: 'POST',
-            url: 'trackedUserData/onload.php',
-            data: { href: escape(HREF),
-                    appCodeName: escape(navigator.appCodeName),
-                    userAgent: escape(navigator.appVersion),
-                    ww: escape(winInnerW),
-                    wh: escape(winInnerH),
-                    sw: escape(winScreenW),
-                    sh: escape(winScreenH)
-            }	
-        });
+    $.ajax({
+        type: 'POST',
+        url: 'trackedUserData/onload.php',
+        data: { href: escape(HREF),
+                appCodeName: escape(navigator.appCodeName),
+                userAgent: escape(navigator.appVersion),
+                ww: escape(winInnerW),
+                wh: escape(winInnerH),
+                sw: escape(winScreenW),
+                sh: escape(winScreenH)
+        }	
+    });
     //}
 });
 
@@ -67,7 +67,15 @@ window.addEventListener('resize', function(){
     var winInnerW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     var winInnerH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
     console.log("RESIZED --- innerWidth == "+ winInnerW + "innerHeight == "+ winInnerH);
-    
+
+    $.ajax({
+        type: 'POST',
+        url: 'trackedUserData/resize.php',
+        data: { href: escape(HREF),
+                ww: escape(winInnerW),
+                wh: escape(winInnerH)
+        }	
+    });
 });
 
 //client == window, page == document, screen == screen
