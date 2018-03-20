@@ -123,7 +123,11 @@ function TabExample(e) {
 }
 
 //TRACK MOUSE SCROLL
-function getDocHeight() {
+window.addEventListener("scroll", function() { 
+    console.log(window.pageYOffset);
+}, false) 
+
+/* function getDocHeight() {
     var D = document;
     return Math.max(
         D.body.scrollHeight, D.documentElement.scrollHeight,
@@ -148,9 +152,9 @@ window.addEventListener("scroll", function() {
     console.log("scrolling");
     clearTimeout(throttlescroll)
     throttlescroll = setTimeout(function(){amountscrolled()}, 50)
-}, false)
+}, false) */
 
-//TRACK MOUSEMOVEMENT //change logging to not window, body
+//TRACK MOUSEMOVEMENT
 /* document.body.addEventListener("mousemove", function(e) { 
     var event = e || window.event;
     window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
