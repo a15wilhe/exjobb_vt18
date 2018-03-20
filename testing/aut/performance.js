@@ -9,7 +9,7 @@ $( document ).ready(function() {
         //ajax to server
         $.ajax({
             type: 'POST',
-            url: "performance.php",
+            url: "../performance/performance.php",
             data: { performance: "time: " + diffTime + ", page: " + page }
         });
     }

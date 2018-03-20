@@ -49,7 +49,7 @@ window.addEventListener("load", function(){
 
     $.ajax({
         type: 'POST',
-        url: 'trackedUserData/onload.php',
+        url: 'aut/trackedUserData/onload.php',
         data: { href: escape(HREF),
                 appCodeName: escape(navigator.appCodeName),
                 userAgent: escape(navigator.appVersion),
@@ -72,7 +72,7 @@ window.addEventListener('resize', function(){
 
     $.ajax({
         type: 'POST',
-        url: 'trackedUserData/resize.php',
+        url: 'aut/trackedUserData/resize.php',
         data: { href: escape(HREF),
             ww: escape(winInnerW),
             wh: escape(winInnerH),
@@ -95,7 +95,7 @@ document.body.addEventListener("click", function(e) {
 
     $.ajax({
         type: 'POST',
-        url: 'trackedUserData/clicks.php',
+        url: 'aut/trackedUserData/clicks.php',
         data: { href: escape(HREF),
                 pageX: escape(pageX),
                 pageY: escape(pageY)
@@ -114,7 +114,7 @@ function TabExample(e) {
         ++tabs;
         $.ajax({
             type: 'POST',
-            url: 'trackedUserData/tabs.php',
+            url: 'aut/trackedUserData/tabs.php',
             data: { href: escape(HREF),
                     tabs: escape(tabs)
             }	
@@ -161,7 +161,7 @@ function mousemoveTracking() {
     //console.log("MM --- X == " + window.mouseX + " Y == " + window.mouseY);
     $.ajax({
         type: 'POST',
-        url: 'trackedUserData/mousemove.php',
+        url: 'aut/trackedUserData/mousemove.php',
         data: { href: escape(HREF),
                 mouseX: escape(window.mouseX),
                 mouseY: escape(window.mouseY)
@@ -219,7 +219,7 @@ document.body.addEventListener("mousemove", function(e) {
             //console.log("same pos - 40ms");
              $.ajax({
             type: 'POST',
-            url: 'trackedUserData/mousemove.php',
+            url: 'aut/trackedUserData/mousemove.php',
             data: { href: escape(HREF),
                     mouseX: escape(window.mouseX),
                     mouseY: escape(window.mouseY)
