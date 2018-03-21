@@ -2,6 +2,8 @@ $( document ).ready(function() {
 console.log( "tracking script");
 var HREF = window.location.href;
 
+var winInnerWStart;
+var winInnerHStart;
 var tabs = 0;
 
 //RANDOM USER SESSION ID - SESSIONSTORAGE, UUIDV4
@@ -41,8 +43,8 @@ window.addEventListener("load", function(){
         
     HREF = window.location.href;
 
-    var winInnerW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    var winInnerH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    winInnerWStart = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    winInnerHStart = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
     var winScreenW = screen.width;
     var winScreenH = screen.height;
@@ -53,8 +55,8 @@ window.addEventListener("load", function(){
         data: { href: escape(HREF),
                 appCodeName: escape(navigator.appCodeName),
                 userAgent: escape(navigator.appVersion),
-                ww: escape(winInnerW),
-                wh: escape(winInnerH),
+                ww: escape(winInnerWStart),
+                wh: escape(winInnerHStart),
                 sw: escape(winScreenW),
                 sh: escape(winScreenH)
         }	
@@ -63,23 +65,29 @@ window.addEventListener("load", function(){
 
 //TRACK RESIZE
 window.addEventListener('resize', function(){
-    var winInnerW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    var winInnerH = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    var winInnerWNew = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    var winInnerHNew = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
     var winScreenW = screen.width;
     var winScreenH = screen.height;
-    console.log("RESIZED --- innerWidth == "+ winInnerW + "innerHeight == "+ winInnerH);
+    console.log("RESIZED --- innerWidth == "+ winInnerWNew + "innerHeight == "+ winInnerHNew);
 
-    $.ajax({
+    setTimeout(function() {
+        console.log("resize 7sec ");
+       $.ajax({
         type: 'POST',
         url: 'aut/trackedUserData/resize.php',
         data: { href: escape(HREF),
-            ww: escape(winInnerW),
-            wh: escape(winInnerH),
+            wwStart: escape(winInnerWStart),
+            whStart: escape(winInnerHStart),
+            wwNew: escape(winInnerWNew),
+            whNew: escape(winInnerHNew),
             sw: escape(winScreenW),
             sh: escape(winScreenH)
         }	
-    });
+        });
+    }, 7000);
+    
 });
 
 //client == window, page == document, screen == screen

@@ -42,8 +42,10 @@ CREATE TABLE IF NOT EXISTS browser_table (
 CREATE TABLE IF NOT EXISTS resize_table (
 	logID INT AUTO_INCREMENT,
 	href TEXT,
-    ww INT,
-	wh INT,
+    wwStart INT,
+	whStart INT,
+    wwNew INT,
+	whNew INT,
     sw INT,
 	sh INT,
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
