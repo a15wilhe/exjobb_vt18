@@ -3,6 +3,10 @@ var HREF = window.location.href;
 var winInnerWStart;
 var winInnerHStart;
 var tabs = 0;
+var resizes = 0;
+var winInnerWNew;
+var winInnerHNew;
+
 $( document ).ready(function() {
 console.log( "tracking script");
 
@@ -65,15 +69,16 @@ window.addEventListener("load", function(){
 
 //TRACK RESIZE
 window.addEventListener('resize', function(){
-    var winInnerWNew = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-    var winInnerHNew = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    winInnerWNew = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    winInnerHNew = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
     var winScreenW = screen.width;
     var winScreenH = screen.height;
-    console.log("RESIZED --- innerWidth == "+ winInnerWNew + "innerHeight == "+ winInnerHNew);
+    ++resizes;
+    
 
     setTimeout(function() {
-        console.log("resize 7sec ");
+        console.log("RESIZED " + resizes + "--- innerWidth == "+ winInnerWNew + "innerHeight == "+ winInnerHNew);
        $.ajax({
         type: 'POST',
         url: 'aut/trackedUserData/resize.php',
