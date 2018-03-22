@@ -8,24 +8,6 @@ FLUSH PRIVILEGES;
 
 
 /* ---- AUT DB #1----- */
-/*events - click, mouse, hover, tab, resize, scroll*//* add -- target */
-CREATE TABLE IF NOT EXISTS click_table (
-	logID INT AUTO_INCREMENT,	
-    href TEXT,
-	pageX INT,
-	pageY INT,
-	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (logID)
-);
-
-CREATE TABLE IF NOT EXISTS tabing_table (
-	logID INT AUTO_INCREMENT,
-	href TEXT,
-    tabs INT,
-	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (logID)
-);/* count up total amount of tabs per page*/
-
 CREATE TABLE IF NOT EXISTS browser_table (
 	logID INT AUTO_INCREMENT,
 	href TEXT,
@@ -52,6 +34,22 @@ CREATE TABLE IF NOT EXISTS resize_table (
 	PRIMARY KEY (logID)
 );
 
+CREATE TABLE IF NOT EXISTS click_table (
+	logID INT AUTO_INCREMENT,	
+    href TEXT,
+	pageX INT,
+	pageY INT,
+	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (logID)
+);
+
+CREATE TABLE IF NOT EXISTS tabing_table (
+	logID INT AUTO_INCREMENT,
+	href TEXT,
+    tabs INT,
+	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (logID)
+);
 CREATE TABLE IF NOT EXISTS enter_table (
 	logID INT AUTO_INCREMENT,
 	href TEXT,
@@ -77,20 +75,20 @@ CREATE TABLE IF NOT EXISTS mousemove_table (
 	PRIMARY KEY (logID)
 );
 
-CREATE TABLE IF NOT EXISTS scroll_table (
-	logID INT AUTO_INCREMENT,	
-    href TEXT,
-	scrollY INT,
-	scrolls INT,
-	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
-	PRIMARY KEY (logID)
-);
-
 CREATE TABLE IF NOT EXISTS hover_table (
 	logID INT AUTO_INCREMENT,
 	href TEXT,
 	target TEXT,
 	countUpSec INT,
+	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (logID)
+);
+
+CREATE TABLE IF NOT EXISTS scroll_table (
+	logID INT AUTO_INCREMENT,	
+    href TEXT,
+	scrollY INT,
+	scrolls INT,
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (logID)
 );
