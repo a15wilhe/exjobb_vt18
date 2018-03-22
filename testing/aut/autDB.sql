@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS resize_table (
 	PRIMARY KEY (logID)
 );
 
-CREATE TABLE IF NOT EXISTS click_table (
+CREATE TABLE IF NOT EXISTS click_table (		
 	logID INT AUTO_INCREMENT,	
     href TEXT,
 	pageX INT,
@@ -81,7 +81,7 @@ CREATE TABLE IF NOT EXISTS hover_table (
 	logID INT AUTO_INCREMENT,
 	href TEXT,
 	target TEXT,
-	countUpSec INT,
+	hoverTime INT,
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (logID)
 );

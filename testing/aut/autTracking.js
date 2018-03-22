@@ -11,6 +11,8 @@ var winInnerWNew;
 var winInnerHNew;
 var locationX;
 var locationY;
+var lastTarget;
+var startTimeHover;
 
 $( document ).ready(function() {
 console.log( "tracking script");
@@ -214,8 +216,6 @@ window.onload = function() {
 } */
 
 //TRACK HOVER OVER 100MS
-var lastTarget;
-var startTimeHover;
 document.body.addEventListener("mouseover", function(e) { 
     //Get target & start timer
     //var currentTarget = e.target;
@@ -225,8 +225,17 @@ document.body.addEventListener("mouseover", function(e) {
     setTimeout(function() {
         //console.log("over 1 sec");
         if (e.target == lastTarget) {
-            console.log("same target over 1000ms");
-            //console.log(e.target);
+            //console.log("same target over 1000ms" + e.target);
+            console.log(e.target);
+            /* $.ajax({
+                type: 'POST',
+                url: 'aut/trackedUserData/hover.php',
+                data: { href: escape(HREF),
+                        target: escape(e.target.id),
+                        hoverTime: escape("100")
+                }	
+            }); */
+
         }
     }, 100);
 }, true);
