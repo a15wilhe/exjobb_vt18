@@ -5,6 +5,7 @@ var winInnerHStart;
 var tabs = 0;
 var resizes = 0;
 var scrolls = 0;
+var enters = 0;
 var winInnerWNew;
 var winInnerHNew;
 
@@ -145,6 +146,15 @@ function TabExample(e) {
             url: 'aut/trackedUserData/tabs.php',
             data: { href: escape(HREF),
                     tabs: escape(tabs)
+            }	
+        });
+    }else if(e.keyCode == 13) {
+        ++enters;
+        $.ajax({
+            type: 'POST',
+            url: 'aut/trackedUserData/enter.php',
+            data: { href: escape(HREF),
+                    enters: escape(enters)
             }	
         });
     }
