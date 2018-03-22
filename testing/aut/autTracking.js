@@ -9,6 +9,8 @@ var scrolls = 0;
 var enters = 0;
 var winInnerWNew;
 var winInnerHNew;
+var locationX;
+var locationY;
 
 $( document ).ready(function() {
 console.log( "tracking script");
@@ -187,33 +189,6 @@ window.addEventListener("scroll", function() {
 
 }, false) 
 
-/* function getDocHeight() {
-    var D = document;
-    return Math.max(
-        D.body.scrollHeight, D.documentElement.scrollHeight,
-        D.body.offsetHeight, D.documentElement.offsetHeight,
-        D.body.clientHeight, D.documentElement.clientHeight
-    )
-}
-var winheight, docheight, trackLength, throttlescroll;
-function getmeasurements(){
-    winheight= window.innerHeight || (document.documentElement || document.body).clientHeight
-    docheight = getDocHeight()
-    trackLength = docheight - winheight
-}
-function amountscrolled(){
-    var scrollTop = window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop
-    var pctScrolled = Math.floor(scrollTop/trackLength * 100) // gets percentage scrolled (ie: 80 or NaN if tracklength == 0)
-    console.log(pctScrolled + '% scrolled')
-}
-getmeasurements();
-
-window.addEventListener("scroll", function() { 
-    console.log("scrolling");
-    clearTimeout(throttlescroll)
-    throttlescroll = setTimeout(function(){amountscrolled()}, 50)
-}, false) */
-
 //TRACK MOUSEMOVEMENT
 /* document.body.addEventListener("mousemove", function(e) { 
     var event = e || window.event;
@@ -239,8 +214,7 @@ window.onload = function() {
 } */
 
 //TRACK HOVER OVER 100MS
-//Working bit incorrect
-/* var lastTarget;
+var lastTarget;
 var startTimeHover;
 document.body.addEventListener("mouseover", function(e) { 
     //Get target & start timer
@@ -256,7 +230,7 @@ document.body.addEventListener("mouseover", function(e) {
         }
     }, 100);
 }, true);
-
+/*
 //on mouseleave, check time is over 100ms, check if same target then log
 document.body.addEventListener("mouseout", function(e) {
     var timenow = (new Date).getTime();
@@ -266,8 +240,8 @@ document.body.addEventListener("mouseout", function(e) {
     }
 }, true); */
 
-/* //TRACK COMPRESSION/SELECTION OF MOUSEMOVE
-document.body.addEventListener("mousemove", function(e) { 
+//TRACK COMPRESSION/SELECTION OF MOUSEMOVE
+/* document.body.addEventListener("mousemove", function(e) { 
     var event = e || window.event;
     window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
     window.mouseY = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
@@ -280,14 +254,15 @@ document.body.addEventListener("mousemove", function(e) {
     setTimeout(function(){ 
         //compare same pos, then ajax
         if (window.mouseX == locationX && window.mouseY == locationY) {
-            //console.log("same pos - 40ms");
+            console.log(window.mouseX + " - " + locationX + " - " + window.mouseY + " - " + locationY);
              $.ajax({
-            type: 'POST',
-            url: 'aut/trackedUserData/mousemove.php',
-            data: { href: escape(HREF),
-                    mouseX: escape(window.mouseX),
-                    mouseY: escape(window.mouseY)
-           });	 
+                type: 'POST',
+                url: 'aut/trackedUserData/mousemove.php',
+                data: { href: escape(HREF),
+                        mouseX: escape(window.mouseX),
+                        mouseY: escape(window.mouseY)
+                }
+            });	 
         }
     }, 40);
     
