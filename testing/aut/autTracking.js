@@ -44,7 +44,7 @@ window.addEventListener("load", function(){
         //sessionStorage.setItem("autTestingUUID", uuidv4());
         //console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
     //}
-        
+    var startTime = (new Date).getTime();    
     HREF = window.location.href;
 
     winInnerWStart = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -67,6 +67,19 @@ window.addEventListener("load", function(){
     });
 });
 
+window.addEventListener("unload", function(){
+    var endTime = (new Date).getTime(); 
+    var diffTime = endTime - startTime;
+    consloe.log(diffTime);
+
+    /* $.ajax({
+        type: 'POST',
+        url: 'aut/trackedUserData/unload.php',
+        data: { href: escape(HREF),
+            time: escape(diffTime)
+        }	
+    }); */
+});
 //TRACK RESIZE
 window.addEventListener('resize', function(){
     winInnerWNew = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
