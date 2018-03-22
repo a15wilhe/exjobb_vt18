@@ -137,9 +137,7 @@ document.onkeydown = TabExample;
 
 function TabExample(e) {
     var e = (e) ? e : ((event) ? event : null);
-    var tabKey = 9;
-    if(e.keyCode == tabKey) {
-        console.log("tabing");
+    if(e.keyCode == 9) {
         ++tabs;
         $.ajax({
             type: 'POST',
