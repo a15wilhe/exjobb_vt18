@@ -111,7 +111,6 @@ window.addEventListener('resize', function(){
     
 });
 
-//client == window, page == document, screen == screen
 //TRACK MOUSE CLICK
 document.body.addEventListener("click", function(e) { 
     e = e || window.event;
@@ -127,7 +126,9 @@ document.body.addEventListener("click", function(e) {
         url: 'aut/trackedUserData/clicks.php',
         data: { href: escape(HREF),
                 pageX: escape(pageX),
-                pageY: escape(pageY)
+                pageY: escape(pageY),
+                id: escape(e.target.id),
+                target: escape($(event.target).text())
         }	
     });
 }, true);

@@ -39,6 +39,8 @@ CREATE TABLE IF NOT EXISTS click_table (
     href TEXT,
 	pageX INT,
 	pageY INT,
+    id TEXT,
+    target TEXT,
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (logID)
 );

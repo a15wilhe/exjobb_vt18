@@ -11,7 +11,7 @@ OR die('Could not connect to MySQL: ' .
 mysqli_connect_error());
 
 // Create a query for the database
-$query = "SELECT logID, href, pageX, pageY, TIMESTAMP FROM click_table";
+$query = "SELECT logID, href, pageX, pageY, id, target, TIMESTAMP FROM click_table";
 
 // Get a response from the database by sending the connection
 // and the query
@@ -27,6 +27,8 @@ cellspacing="5" cellpadding="8">
 <td align="left"><b>href</b></td>
 <td align="left"><b>pageX</b></td>
 <td align="left"><b>pageY</b></td>
+<td align="left"><b>id</b></td>
+<td align="left"><b>target</b></td>
 <td align="left"><b>TIMESTAMP</b></td></tr>';
 
 // mysqli_fetch_array will return a row of data from the query
@@ -38,6 +40,8 @@ $row['logID'] . '</td><td align="left">' .
 $row['href'] . '</td><td align="left">' .
 $row['pageX'] . '</td><td align="left">' . 
 $row['pageY'] . '</td><td align="left">' .
+$row['id'] . '</td><td align="left">' .
+$row['target'] . '</td><td align="left">' .
 $row['TIMESTAMP'] . '</td><td align="left">';
 
 echo '</tr>';
