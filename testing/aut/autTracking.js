@@ -132,10 +132,10 @@ document.body.addEventListener("click", function(e) {
     });
 }, true);
 
-//TRACK TAB CLICK	
-document.onkeydown = TabExample;
+//TRACK TAB & enter CLICK	
+document.onkeydown = keypress;
 
-function TabExample(e) {
+function keypress(e) {
     var e = (e) ? e : ((event) ? event : null);
     if(e.keyCode == 9) {
         ++tabs;
