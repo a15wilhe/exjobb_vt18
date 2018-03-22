@@ -10,6 +10,20 @@ var winInnerHNew;
 $( document ).ready(function() {
 console.log( "tracking script");
 
+/* var startTimeAUT = (new Date).getTime();
+
+$(document).unload(function() {
+    var endTimeAUT = (new Date).getTime();
+
+    $.ajax({
+        type: 'POST',
+        url: 'aut/trackedUserData/unload.php',
+        data: { href: escape(HREF),
+            time: escape(endTimeAUT - startTimeAUT)
+        }	
+    });
+}); */
+
 //RANDOM USER SESSION ID - SESSIONSTORAGE, UUIDV4
 function uuidv4() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
@@ -67,19 +81,6 @@ window.addEventListener("load", function(){
     });
 });
 
-window.addEventListener("unload", function(){
-    var endTime = (new Date).getTime(); 
-    var diffTime = endTime - startTime;
-    consloe.log(diffTime);
-
-    /* $.ajax({
-        type: 'POST',
-        url: 'aut/trackedUserData/unload.php',
-        data: { href: escape(HREF),
-            time: escape(diffTime)
-        }	
-    }); */
-});
 //TRACK RESIZE
 window.addEventListener('resize', function(){
     winInnerWNew = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
