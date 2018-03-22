@@ -1,5 +1,5 @@
 var HREF = window.location.href;
-
+var resizeBool = true;
 var winInnerWStart;
 var winInnerHStart;
 var tabs = 0;
@@ -94,20 +94,25 @@ window.addEventListener('resize', function(){
     
 
     setTimeout(function() {
-        console.log("RESIZED " + resizes + "--- innerWidth == "+ winInnerWNew + "innerHeight == "+ winInnerHNew);
-       $.ajax({
-        type: 'POST',
-        url: 'aut/trackedUserData/resize.php',
-        data: { href: escape(HREF),
-            wwStart: escape(winInnerWStart),
-            whStart: escape(winInnerHStart),
-            wwNew: escape(winInnerWNew),
-            whNew: escape(winInnerHNew),
-            sw: escape(winScreenW),
-            sh: escape(winScreenH)
-        }	
-        });
-    }, 7000);
+        if (resizeBool) {
+            resizeBool = false;
+            console.log("RESIZED " + resizes + "--- innerWidth == "+ winInnerWNew + "innerHeight == "+ winInnerHNew);
+            $.ajax({
+                type: 'POST',
+                url: 'aut/trackedUserData/resize.php',
+                data: { href: escape(HREF),
+                    wwStart: escape(winInnerWStart),
+                    whStart: escape(winInnerHStart),
+                    wwNew: escape(winInnerWNew),
+                    whNew: escape(winInnerHNew),
+                    sw: escape(winScreenW),
+                    sh: escape(winScreenH)
+                }	
+            });
+        }
+        setTimeout(function() {resizeBool = true;}, 4000);
+    }, 10000);
+    
     
 });
 

@@ -11,7 +11,7 @@ OR die('Could not connect to MySQL: ' .
 mysqli_connect_error());
 
 // Create a query for the database
-$query = "SELECT logID, href, ww, wh, sw, sh, TIMESTAMP FROM resize_table";
+$query = "SELECT logID, href,wwStart, whStart, wwNew, whNew, sw, sh, TIMESTAMP FROM resize_table";
 
 // Get a response from the database by sending the connection
 // and the query
@@ -25,8 +25,10 @@ cellspacing="5" cellpadding="8">
 
 <tr><td align="left"><b>ID</b></td>
 <td align="left"><b>href</b></td>
-<td align="left"><b>ww</b></td>
-<td align="left"><b>wh</b></td>
+<td align="left"><b>wwStart</b></td>
+<td align="left"><b>whStart</b></td>
+<td align="left"><b>wwNew</b></td>
+<td align="left"><b>whNew</b></td>
 <td align="left"><b>sw</b></td>
 <td align="left"><b>sh</b></td>
 <td align="left"><b>TIMESTAMP</b></td></tr>';
@@ -38,8 +40,10 @@ while($row = mysqli_fetch_array($response)){
 echo '<tr><td align="left">' . 
 $row['logID'] . '</td><td align="left">' . 
 $row['href'] . '</td><td align="left">' .
-$row['ww'] . '</td><td align="left">' .
-$row['wh'] . '</td><td align="left">' .
+$row['wwStart'] . '</td><td align="left">' .
+$row['whStart'] . '</td><td align="left">' .
+$row['wwNew'] . '</td><td align="left">' .
+$row['whNew'] . '</td><td align="left">' .
 $row['sw'] . '</td><td align="left">' .
 $row['sh'] . '</td><td align="left">' .
 $row['TIMESTAMP'] . '</td><td align="left">';
