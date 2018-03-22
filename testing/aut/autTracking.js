@@ -1,5 +1,6 @@
 var HREF = window.location.href;
 var resizeBool = true;
+var scrollBool = true;
 var winInnerWStart;
 var winInnerHStart;
 var tabs = 0;
@@ -165,18 +166,25 @@ function keypress(e) {
 }
 
 //TRACK MOUSE SCROLL
-window.addEventListener("scroll", function() { 
-    console.log(window.pageYOffset);
-
+window.addEventListener("scroll", function() {
+    console.log("current = " + window.pageYOffset);
     ++scrolls;
-        $.ajax({
-            type: 'POST',
-            url: 'aut/trackedUserData/scroll.php',
-            data: { href: escape(HREF),
-                    scrollY: escape(window.pageYOffset),
-                    scrolls: escape(scrolls)
-            }	
-        });
+    setTimeout(function() {
+        if (scrollBool) {
+            scrollBool = false;
+            console.log("logging = " + window.pageYOffset);
+            $.ajax({
+                type: 'POST',
+                url: 'aut/trackedUserData/scroll.php',
+                data: { href: escape(HREF),
+                        scrollY: escape(window.pageYOffset),
+                        scrolls: escape(scrolls)
+                }	
+            });
+        }
+        setTimeout(function() {scrollBool = true;}, 500);
+    }, 500);
+
 }, false) 
 
 /* function getDocHeight() {
