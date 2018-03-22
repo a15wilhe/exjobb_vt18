@@ -1,10 +1,10 @@
-$( document ).ready(function() {
-console.log( "tracking script");
 var HREF = window.location.href;
 
 var winInnerWStart;
 var winInnerHStart;
 var tabs = 0;
+$( document ).ready(function() {
+console.log( "tracking script");
 
 //RANDOM USER SESSION ID - SESSIONSTORAGE, UUIDV4
 function uuidv4() {
