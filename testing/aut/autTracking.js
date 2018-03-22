@@ -4,6 +4,7 @@ var winInnerWStart;
 var winInnerHStart;
 var tabs = 0;
 var resizes = 0;
+var scrolls = 0;
 var winInnerWNew;
 var winInnerHNew;
 
@@ -152,6 +153,16 @@ function TabExample(e) {
 //TRACK MOUSE SCROLL
 window.addEventListener("scroll", function() { 
     console.log(window.pageYOffset);
+
+    ++scrolls;
+        $.ajax({
+            type: 'POST',
+            url: 'aut/trackedUserData/scroll.php',
+            data: { href: escape(HREF),
+                    scrollY: escape(window.pageYOffset),
+                    scrolls: escape(scrolls)
+            }	
+        });
 }, false) 
 
 /* function getDocHeight() {
