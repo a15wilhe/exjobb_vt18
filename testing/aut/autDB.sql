@@ -80,7 +80,8 @@ CREATE TABLE IF NOT EXISTS mousemove_table (
 CREATE TABLE IF NOT EXISTS hover_table (
 	logID INT AUTO_INCREMENT,
 	href TEXT,
-	target TEXT,
+	targetID TEXT,
+    targetText TEXT,
 	hoverTime INT,
 	TIMESTAMP DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (logID)

@@ -11,7 +11,7 @@ OR die('Could not connect to MySQL: ' .
 mysqli_connect_error());
 
 // Create a query for the database
-$query = "SELECT logID, href, target, hoverTime, TIMESTAMP FROM hover_table";
+$query = "SELECT logID, href, targetID, targetText, hoverTime, TIMESTAMP FROM hover_table";
 
 // Get a response from the database by sending the connection
 // and the query
@@ -25,7 +25,8 @@ cellspacing="5" cellpadding="8">
 
 <tr><td align="left"><b>ID</b></td>
 <td align="left"><b>href</b></td>
-<td align="left"><b>target</b></td>
+<td align="left"><b>targetID</b></td>
+<td align="left"><b>targetText</b></td>
 <td align="left"><b>hoverTime</b></td>
 <td align="left"><b>TIMESTAMP</b></td></tr>';
 
@@ -36,7 +37,8 @@ while($row = mysqli_fetch_array($response)){
 echo '<tr><td align="left">' . 
 $row['logID'] . '</td><td align="left">' . 
 $row['href'] . '</td><td align="left">' .
-$row['target'] . '</td><td align="left">' .
+$row['targetID'] . '</td><td align="left">' .
+$row['targetText'] . '</td><td align="left">' .
 $row['hoverTime'] . '</td><td align="left">' .
 $row['TIMESTAMP'] . '</td><td align="left">';
 

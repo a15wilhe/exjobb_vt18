@@ -2,14 +2,16 @@
 include 'trackedUserData.php';
 
 $href=getpostAJAX("href");
-$target=getpostAJAX("target");
+$targetID=getpostAJAX("targetID");
+$targetText=getpostAJAX("targetText");
 $hoverTime=getpostAJAX("hoverTime");
 
 try{
-        $querystring="INSERT INTO hover_table(href,target,hoverTime) values (:href,:target,:hoverTime);";
+        $querystring="INSERT INTO hover_table(href,targetID,targetText,hoverTime) values (:href,:targetID,:targetText,:hoverTime);";
         $stmts = $pdo->prepare($querystring);
         $stmts->bindParam(':href',$href);
-        $stmts->bindParam(':target',$target);
+        $stmts->bindParam(':targetID',$targetID);
+        $stmts->bindParam(':targetText',$targetText);
         $stmts->bindParam(':hoverTime',$hoverTime);
         $stmts->execute();
 

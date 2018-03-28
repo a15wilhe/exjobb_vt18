@@ -11,8 +11,10 @@ var winInnerWNew;
 var winInnerHNew;
 var locationX;
 var locationY;
-var lastTarget;
-var startTimeHover;
+var hoverlastTarget;
+var hoverStartTime;
+var hoverTargetID;
+var hoverTargetText;
 
 $( document ).ready(function() {
 console.log( "tracking script");
@@ -216,38 +218,24 @@ window.onload = function() {
 } */
 
 //TRACK HOVER OVER 100MS
-document.body.addEventListener("mouseover", function(e) { 
-    //Get target & start timer
-    //var currentTarget = e.target;
-    lastTarget = e.target;
-    startTimeHover = (new Date).getTime();
-
-    setTimeout(function() {
-        //console.log("over 1 sec");
-        if (e.target == lastTarget) {
-            //console.log("same target over 1000ms" + e.target);
-            console.log(e.target);
-            /* $.ajax({
+document.body.addEventListener("mouseenter", function(e) { 
+    if (e.target !== hoverlastTarget) {
+        var timenow = (new Date).getTime();
+        var difftime = timenow - hoverStartTime;
+        if (difftime > 99) {
+            //console.log(difftime); 
+            $.ajax({
                 type: 'POST',
                 url: 'aut/trackedUserData/hover.php',
-                data: { href: escape(HREF),
-                        target: escape(e.target.id),
-                        hoverTime: escape("100")
-                }	
-            }); */
-
+                data: { href: escape(HREF), targetID: escape(hoverTargetID), targetText: escape(hoverTargetText),hoverTime: escape(difftime) }
+            }); 
         }
-    }, 100);
-}, true);
-/*
-//on mouseleave, check time is over 100ms, check if same target then log
-document.body.addEventListener("mouseout", function(e) {
-    var timenow = (new Date).getTime();
-    var difftime = timenow - startTimeHover;
-    if (difftime > 0) {
-        console.log(difftime);
     }
-}, true); */
+    hoverStartTime = (new Date).getTime();
+    hoverlastTarget = e.target;
+    hoverTargetID = e.target.id;
+    hoverTargetText = $(event.target).text();
+}, true);
 
 //TRACK COMPRESSION/SELECTION OF MOUSEMOVE
 /* document.body.addEventListener("mousemove", function(e) { 
