@@ -31,14 +31,23 @@ $(document).unload(function() {
             time: escape(endTimeAUT - startTimeAUT)
         }	
     });
-}); */
+}); 
 
 //RANDOM USER SESSION ID - SESSIONSTORAGE, UUIDV4
 function uuidv4() {
     return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
         (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
     )
-}
+}  
+  //fetch sessionStorage uuid
+    //var uuid = sessionStorage.getItem("autTestingUUID");
+    //console.log("uuid (start) == " + uuid);
+
+    // no sessionID == new user, Generate a new user a SessionID, fetch browser and window info		
+    //if (uuid==null) {
+        //sessionStorage.setItem("autTestingUUID", uuidv4());
+        //console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
+    //}*/
 
 //---- AJAX call -----
 var POSTURL = 'trackedUserData.php';
@@ -58,15 +67,7 @@ function ajaxRequest(data) {
 }
 
 window.addEventListener("load", function(){
-    //fetch sessionStorage uuid
-    //var uuid = sessionStorage.getItem("autTestingUUID");
-    //console.log("uuid (start) == " + uuid);
 
-    // no sessionID == new user, Generate a new user a SessionID, fetch browser and window info		
-    //if (uuid==null) {
-        //sessionStorage.setItem("autTestingUUID", uuidv4());
-        //console.log("uuid (after gen) == " + sessionStorage.getItem("autTestingUUID"));
-    //}
     var startTime = (new Date).getTime();    
     HREF = window.location.href;
 
