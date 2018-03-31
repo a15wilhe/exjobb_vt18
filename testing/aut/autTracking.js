@@ -176,22 +176,14 @@ function keypress(e) {
 window.addEventListener("scroll", function() {
     console.log("current = " + window.pageYOffset);
     ++scrolls;
-    setTimeout(function() {
-        if (scrollBool) {
-            scrollBool = false;
-            console.log("logging = " + window.pageYOffset);
-            $.ajax({
-                type: 'POST',
-                url: 'aut/trackedUserData/scroll.php',
-                data: { href: escape(HREF),
-                        scrollY: escape(window.pageYOffset),
-                        scrolls: escape(scrolls)
-                }	
-            });
-        }
-        setTimeout(function() {scrollBool = true;}, 500);
-    }, 500);
-
+    $.ajax({
+        type: 'POST',
+        url: 'aut/trackedUserData/scroll.php',
+        data: { href: escape(HREF),
+                scrollY: escape(window.pageYOffset),
+                scrolls: escape(scrolls)
+        }	
+    });
 }, false) 
 
 //TRACK MOUSEMOVEMENT
