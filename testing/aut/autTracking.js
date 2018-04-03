@@ -237,7 +237,7 @@ document.body.addEventListener("mouseenter", function(e) {
 }, true);
 
 //TRACK COMPRESSION/SELECTION OF MOUSEMOVE
-document.body.addEventListener("mousemove", function(e) { 
+/*document.body.addEventListener("mousemove", function(e) { 
     var event = e || window.event;
     window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
     window.mouseY = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
@@ -264,6 +264,6 @@ document.body.addEventListener("mousemove", function(e) {
         }
     }, 40);
     
-}, true); 
+}, true); */
 
 });//End of document.ready
