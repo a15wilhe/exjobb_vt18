@@ -145,7 +145,7 @@ document.body.addEventListener("click", function(e) {
                 id: escape(e.target.id),
                 target: escape($(event.target).text()),
                 ww: escape(winInnerWNew),
-                wh: escape(winInnerHNew),
+                wh: escape(winInnerHNew)
         }	
     });
 }, true);
@@ -191,7 +191,7 @@ window.addEventListener("scroll", function() {
 }, false) 
 
 //TRACK MOUSEMOVEMENT
-/* document.body.addEventListener("mousemove", function(e) { 
+document.body.addEventListener("mousemove", function(e) { 
     var event = e || window.event;
     window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
     window.mouseY = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
@@ -204,15 +204,17 @@ function mousemoveTracking() {
         url: 'aut/trackedUserData/mousemove.php',
         data: { href: escape(HREF),
                 mouseX: escape(window.mouseX),
-                mouseY: escape(window.mouseY)
+                mouseY: escape(window.mouseY),
+                ww: escape(winInnerWNew),
+                wh: escape(winInnerHNew)
         }	
     });
 }
 
 window.onload = function() {
-    //var interval = setInterval(mousemoveTracking, 100);
-    //setTimeout(function( ) { clearInterval( interval ); }, 5000);//just for now 
-} */
+    var interval = setInterval(mousemoveTracking, 100);
+    setTimeout(function( ) { clearInterval( interval ); }, 5000);//just for now 
+}
 
 //TRACK HOVER OVER 100MS
 document.body.addEventListener("mouseenter", function(e) { 
