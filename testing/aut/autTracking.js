@@ -73,6 +73,8 @@ window.addEventListener("load", function(){
 
     winInnerWStart = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
     winInnerHStart = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+    winInnerWNew = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    winInnerHNew = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 
     var winScreenW = screen.width;
     var winScreenH = screen.height;
@@ -141,7 +143,9 @@ document.body.addEventListener("click", function(e) {
                 pageX: escape(pageX),
                 pageY: escape(pageY),
                 id: escape(e.target.id),
-                target: escape($(event.target).text())
+                target: escape($(event.target).text()),
+                ww: escape(winInnerWNew),
+                wh: escape(winInnerHNew),
         }	
     });
 }, true);

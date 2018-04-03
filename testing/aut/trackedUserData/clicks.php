@@ -6,15 +6,19 @@ $pageX=getpostAJAX("pageX");
 $pageY=getpostAJAX("pageY");
 $id=getpostAJAX("id");
 $target=getpostAJAX("target");
+$ww=getpostAJAX("ww");
+$wh=getpostAJAX("wh");
 
 try{
-        $querystring="INSERT INTO click_table(href,pageX,pageY,id,target) values (:href,:pageX,:pageY,:id,:target);";
+        $querystring="INSERT INTO click_table(href,pageX,pageY,id,target,ww,wh) values (:href,:pageX,:pageY,:id,:target,:ww,:wh);";
         $stmts = $pdo->prepare($querystring);
         $stmts->bindParam(':href',$href);
         $stmts->bindParam(':pageX',$pageX);
         $stmts->bindParam(':pageY',$pageY);
         $stmts->bindParam(':id',$id);
         $stmts->bindParam(':target',$target);
+        $stmts->bindParam(':ww',$ww);
+        $stmts->bindParam(':wh',$wh);
         $stmts->execute();
 
         //print console log
