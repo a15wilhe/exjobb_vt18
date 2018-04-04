@@ -223,11 +223,11 @@ document.body.addEventListener("mouseenter", function(e) {
         var difftime = timenow - hoverStartTime;
         if (difftime > 99) {
             //console.log(difftime); 
-            $.ajax({
+            /*$.ajax({
                 type: 'POST',
                 url: 'aut/trackedUserData/hover.php',
                 data: { href: escape(HREF), targetID: escape(hoverTargetID), targetText: escape(hoverTargetText),hoverTime: escape(difftime) }
-            });  
+            });*/  
         }
     }
     hoverStartTime = (new Date).getTime();
