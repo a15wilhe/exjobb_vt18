@@ -5,6 +5,10 @@
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
+		#searchtext span {
+			text-decoration:underline;
+			background-color:yellow;    
+		}
 
 	</style>
 	<script src="aut/libs/jquery-3.3.1.min.js"></script>
@@ -15,13 +19,13 @@
 	<script src="aut/autTracking.js"></script>
 </head>
 <body id="home" data-spy="scroll" data-target="#myScrollspy" data-offset="1">
-<h2 class="display-2">Yesterday's paper</h2>
+<h2 class="display-2" id"brand" >Yesterday's paper</h2>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top mb-5">
 	<!-- Brand/logo -->
-	<a class="navbar-brand active mx-2" href="#">P</a>
+	<a class="navbar-brand active mx-2" href="testing\test1.html" id"logo" >P</a>
 	
 	<!-- Navbar text-->
-	<span class="navbar-text mx-2">
+	<span class="navbar-text mx-2" id"navbarText">
 		The paper for you!
 	</span>
 
@@ -41,7 +45,7 @@
 	
 	<form class="form-inline float-right mx-1 ml-auto" action="">
 		<input class="form-control" type="text" placeholder="Search">
-		<button class="btn btn-primary" type="submit">Search</button>
+		<button class="btn btn-primary" type="submit" id"search">Search</button>
 	</form>
 
 </nav>
@@ -73,7 +77,7 @@
 			<div id="section1" class="card mb-5 bg-success">
 				<div class="card-body">
 					<h3 class="card-title">Tricky carpenters</h3>
-					<p class="card-text">
+					<p class="card-text" id="searchtext">
 						Fifty months between can place these bad but tricky carpenters. Whichever throne influentially shall wobble which offer. The only uninterested but disturbed patch does command a few neither funny nor redundant circles. Another cat moodily can clip a lot of magics. A million nice kittys potentially examined that familiar frame. Different rabid yet earthy feathers does harm this good notebook. Any mixed but juicy straw thickly repairs another amused wish. Little enchanted fogs explains the silent cat. A lot of caps grossly can drop a gazillion sons. A gazillion flaky but lively wools extensively did scold different salty clubs. Zero grandmothers rushed zero heads. Which robust caption interminably can enjoy those fogs. Which class disorderly shall squeal sufficient both fancy and imperfect juices. Fifty limping and safe limits nicely employs another neither humdrum nor slow scale. Another humdrum and deeply pollution obtrusively may wreck these grim reapers. Such rakes encourages each insurance. The glove clearly might transport two neither military nor jobless thrones. Zero squalid cakes had reflected fifty vegetables. A education developmentally sneezes several neither fierce nor cheap linens. Several pans grossly can step one vacuous yet hilarious approval. 
 					</p>
 				</div>
@@ -155,7 +159,17 @@
 <script>
 		$(document).ready(function(){
 			$('[data-toggle="tooltip"]').tooltip();   
-		});
+		
+
+	$('#search').keyup(function(){
+         var page = $('#searchtext');
+         var pageText = page.text().replace("<span>","").replace("</span>");
+         var searchedText = $('#search').val();
+         var theRegEx = new RegExp("("+searchedText+")", "igm");    
+         var newHtml = pageText.replace(theRegEx ,"<span>$1</span>");
+         page.html(newHtml);
+	});
+	});
 </script>
 </body>
 </html>
