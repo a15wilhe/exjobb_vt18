@@ -106,7 +106,6 @@ window.addEventListener('resize', function(){
     setTimeout(function() {
         if (resizeBool) {
             resizeBool = false;
-            console.log("RESIZED " + resizes + "--- innerWidth == "+ winInnerWNew + "innerHeight == "+ winInnerHNew);
             $.ajax({
                 type: 'POST',
                 url: 'aut/trackedUserData/resize.php',
@@ -178,7 +177,6 @@ function keypress(e) {
 
 //TRACK MOUSE SCROLL
 window.addEventListener("scroll", function() {
-    console.log("current = " + window.pageYOffset);
     ++scrolls;
     $.ajax({
         type: 'POST',
