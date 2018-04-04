@@ -143,7 +143,7 @@ document.body.addEventListener("click", function(e) {
                 pageX: escape(pageX),
                 pageY: escape(pageY),
                 id: escape(e.target.id),
-                target: escape($(event.target).text()),
+                target: escape($(event.target).text().slice(0,40)),
                 ww: escape(winInnerWNew),
                 wh: escape(winInnerHNew)
         }	
@@ -223,17 +223,17 @@ document.body.addEventListener("mouseenter", function(e) {
         var difftime = timenow - hoverStartTime;
         if (difftime > 99) {
             //console.log(difftime); 
-            /* $.ajax({
+            $.ajax({
                 type: 'POST',
                 url: 'aut/trackedUserData/hover.php',
                 data: { href: escape(HREF), targetID: escape(hoverTargetID), targetText: escape(hoverTargetText),hoverTime: escape(difftime) }
-            });  */
+            });  
         }
     }
     hoverStartTime = (new Date).getTime();
     hoverlastTarget = e.target;
     hoverTargetID = e.target.id;
-    hoverTargetText = $(event.target).text();
+    hoverTargetText = $(event.target).text().slice(0,40);
 }, true);
 
 //TRACK COMPRESSION/SELECTION OF MOUSEMOVE
