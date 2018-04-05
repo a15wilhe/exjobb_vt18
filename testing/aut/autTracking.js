@@ -6,6 +6,7 @@ var winInnerHStart;
 var tabs = 0;
 var resizes = 0;
 var scrolls = 0;
+var isScrolling;
 var enters = 0;
 var winInnerWNew;
 var winInnerHNew;
@@ -176,7 +177,7 @@ function keypress(e) {
 }
 
 //TRACK MOUSE SCROLL
-window.addEventListener("scroll", function() {
+/* window.addEventListener("scroll", function() {
     ++scrolls;
     $.ajax({
         type: 'POST',
@@ -186,7 +187,25 @@ window.addEventListener("scroll", function() {
                 scrolls: escape(scrolls)
         }	
     });
-}, false) 
+}, false); */
+
+//2nd scroll tracking with selection
+window.addEventListener('scroll', function ( event ) {
+	// Clear our timeout throughout the scroll
+	window.clearTimeout( isScrolling );
+	// Set a timeout to run after scrolling ends
+	isScrolling = setTimeout(function() {
+        ++scrolls;
+        $.ajax({
+            type: 'POST',
+            url: 'aut/trackedUserData/scroll.php',
+            data: { href: escape(HREF),
+                    scrollY: escape(window.pageYOffset),
+                    scrolls: escape(scrolls)
+            }	
+        });
+	}, 140);
+}, false);
 
 //TRACK MOUSEMOVEMENT 
 /*document.body.addEventListener("mousemove", function(e) { 
