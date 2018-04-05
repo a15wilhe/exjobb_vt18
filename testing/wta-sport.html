@@ -18,7 +18,7 @@
 <h2 class="display-2" id"brand" >Yesterday's paper</h2>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark sticky-top mb-5">
 	<!-- Brand/logo -->
-	<a class="navbar-brand active mx-2" href="testing\test1.html" id"logo" >P</a>
+	<a class="navbar-brand active mx-2" href="test1.html" id"logo" >P</a>
 	
 	<!-- Navbar text-->
 	<span class="navbar-text mx-2" id"navbarText">
@@ -31,35 +31,52 @@
 			<a class="nav-link mx-1" href="#" data-toggle="tooltip" data-placement="bottom" title="Skriv in en krönika">Write a chronicle</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link mx-1" href="#">Sports</a>
+			<a class="nav-link mx-1" href="wta-sport.html">Sports</a>
 		</li>
 	</ul>
 
-	<button type="button" class="btn btn-primary mx-1" data-toggle="modal" data-target="#subModal">
-		Subscribe
-	</button>
+	<button type="button" class="btn btn-primary mx-1" data-toggle="modal" data-target="#subModal">Subscribe</button>
 	
 	<form class="form-inline float-right mx-1 ml-auto" action="">
-		<input class="form-control" type="text" placeholder="Search">
+		<input id="myInput" class="form-control" type="text" placeholder="Search" onkeyup="myFunction()">
 		<button class="btn btn-primary" type="submit" id"search">Search</button>
 	</form>
 
 </nav>
 
 <div class="container-fluid">
-	
 	<div class="table-responsive">
 		<table id="myTable" class="table table-dark table-hover">
-			<thead class="thead-dark">
-				<tr class="thead-light">
+			<thead class="thead-light">
+				<tr>
 					<!--When a header is clicked, run the sortTable function, with a parameter, 0 for sorting by names, 1 for sorting by country:-->  
-					<th onclick="sortTable(0)">Name</th>
-					<th onclick="sortTable(1)">Country</th>
+					<th onclick="sortTable(0)">Lastname</th>
+					<th onclick="sortTable(1)">Works at</th>
 				</tr>
 			</thead>
 			<tr>
-				<td>Berglunds snabbkop</td>
-				<td>Sweden</td>
+				<td>Terry</td>
+				<td>Carroll - Barton</td>
+			</tr>
+			<tr>
+				<td>Bashirian</td>
+				<td>International Marketing Facilitator</td>
+			</tr>
+			<tr>
+				<td>Harber</td>
+				<td>Prosacco, Kiehn and Orn</td>
+			</tr>
+			<tr>
+				<td>Hyatt</td>
+				<td>Hyatt, Macejkovic and Jast</td>
+			</tr>
+			<tr>
+				<td>Miller</td>
+				<td>Lesch, Pollich and Greenfelder</td>
+			</tr>
+			<tr>
+				<td>Auer</td>
+				<td>Denesik Group</td>
 			</tr>
 		</table>	
 	</div>
@@ -105,57 +122,78 @@
 
 <script>
 	function sortTable(n) {
-	var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+		var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+		table = document.getElementById("myTable");
+		switching = true;
+		//Set the sorting direction to ascending:
+		dir = "asc"; 
+		/*Make a loop that will continue until
+		no switching has been done:*/
+		while (switching) {
+		//start by saying: no switching is done:
+		switching = false;
+		rows = table.getElementsByTagName("TR");
+		/*Loop through all table rows (except the
+		first, which contains table headers):*/
+		for (i = 1; i < (rows.length - 1); i++) {
+			//start by saying there should be no switching:
+			shouldSwitch = false;
+			/*Get the two elements you want to compare,
+			one from current row and one from the next:*/
+			x = rows[i].getElementsByTagName("TD")[n];
+			y = rows[i + 1].getElementsByTagName("TD")[n];
+			/*check if the two rows should switch place,
+			based on the direction, asc or desc:*/
+			if (dir == "asc") {
+			if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+				//if so, mark as a switch and break the loop:
+				shouldSwitch= true;
+				break;
+			}
+			} else if (dir == "desc") {
+			if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+				//if so, mark as a switch and break the loop:
+				shouldSwitch= true;
+				break;
+			}
+			}
+		}
+		if (shouldSwitch) {
+			/*If a switch has been marked, make the switch
+			and mark that a switch has been done:*/
+			rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+			switching = true;
+			//Each time a switch is done, increase this count by 1:
+			switchcount ++;      
+		} else {
+			/*If no switching has been done AND the direction is "asc",
+			set the direction to "desc" and run the while loop again.*/
+			if (switchcount == 0 && dir == "asc") {
+			dir = "desc";
+			switching = true;
+			}
+		}
+		}
+	}
+
+function myFunction() {
+	// Declare variables 
+	var input, filter, table, tr, td, i;
+	input = document.getElementById("myInput");
+	filter = input.value.toUpperCase();
 	table = document.getElementById("myTable");
-	switching = true;
-	//Set the sorting direction to ascending:
-	dir = "asc"; 
-	/*Make a loop that will continue until
-	no switching has been done:*/
-	while (switching) {
-	//start by saying: no switching is done:
-	switching = false;
-	rows = table.getElementsByTagName("TR");
-	/*Loop through all table rows (except the
-	first, which contains table headers):*/
-	for (i = 1; i < (rows.length - 1); i++) {
-		//start by saying there should be no switching:
-		shouldSwitch = false;
-		/*Get the two elements you want to compare,
-		one from current row and one from the next:*/
-		x = rows[i].getElementsByTagName("TD")[n];
-		y = rows[i + 1].getElementsByTagName("TD")[n];
-		/*check if the two rows should switch place,
-		based on the direction, asc or desc:*/
-		if (dir == "asc") {
-		if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-			//if so, mark as a switch and break the loop:
-			shouldSwitch= true;
-			break;
+	tr = table.getElementsByTagName("tr");
+
+	// Loop through all table rows, and hide those who don't match the search query
+	for (i = 0; i < tr.length; i++) {
+	td = tr[i].getElementsByTagName("td")[0];
+	if (td) {
+		if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		tr[i].style.display = "";
+		} else {
+		tr[i].style.display = "none";
 		}
-		} else if (dir == "desc") {
-		if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-			//if so, mark as a switch and break the loop:
-			shouldSwitch= true;
-			break;
-		}
-		}
-	}
-	if (shouldSwitch) {
-		/*If a switch has been marked, make the switch
-		and mark that a switch has been done:*/
-		rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-		switching = true;
-		//Each time a switch is done, increase this count by 1:
-		switchcount ++;      
-	} else {
-		/*If no switching has been done AND the direction is "asc",
-		set the direction to "desc" and run the while loop again.*/
-		if (switchcount == 0 && dir == "asc") {
-		dir = "desc";
-		switching = true;
-		}
-	}
+	} 
 	}
 }
 </script>
