@@ -142,7 +142,7 @@ document.body.addEventListener("click", function(e) {
         data: { href: escape(HREF),
                 pageX: escape(pageX),
                 pageY: escape(pageY),
-                id: escape(e.target.id),
+                id: escape(e.target.id.slice(0,40)),
                 target: escape($(event.target).text().slice(0,40)),
                 ww: escape(winInnerWNew),
                 wh: escape(winInnerHNew)
@@ -243,8 +243,8 @@ document.body.addEventListener("mouseenter", function(e) {
             /*$.ajax({
                 type: 'POST',
                 url: 'aut/trackedUserData/hover.php',
-                data: { href: escape(HREF), targetID: escape(hoverTargetID), targetText: escape(hoverTargetText),hoverTime: escape(difftime) }
-            });*/  
+                data: { href: escape(HREF), targetID: escape(hoverTargetID.slice(0,40)), targetText: escape(hoverTargetText),hoverTime: escape(difftime) }
+            });*/
         }
     }
     hoverStartTime = (new Date).getTime();
