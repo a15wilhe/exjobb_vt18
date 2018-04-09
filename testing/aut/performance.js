@@ -9,8 +9,8 @@ $( document ).ready(function() {
         //ajax to server
         $.ajax({
             type: 'POST',
-            url: "../performance/performance.php",
-            data: { performance: "time: " + diffTime + ", page: " + page }
+            url: "http://192.168.10.2/exjobb_vt18/performance/performance.php",
+            data: { performance: diffTime + ", " + page }
         });
     }
 }); 
