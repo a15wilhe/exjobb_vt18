@@ -127,9 +127,7 @@ function keypress(e) {
 }
 
 window.addEventListener('scroll', function ( event ) {
-	// Clear our timeout throughout the scroll
 	window.clearTimeout( isScrolling );
-	// Set a timeout to run after scrolling ends
 	isScrolling = setTimeout(function() {
         ++scrolls;
         $.ajax({
@@ -149,12 +147,11 @@ document.body.addEventListener("mouseenter", function(e) {
         var timenow = (new Date).getTime();
         var difftime = timenow - hoverStartTime;
         if (difftime > 99) {
-            //console.log(difftime); 
-            /*$.ajax({
+            $.ajax({
                 type: 'POST',
                 url: 'aut/trackedUserData/hover.php',
                 data: { href: escape(HREF), targetID: escape(hoverTargetID.slice(0,40)), targetText: escape(hoverTargetText),hoverTime: escape(difftime) }
-            });*/
+            });
         }
     }
     hoverStartTime = (new Date).getTime();
