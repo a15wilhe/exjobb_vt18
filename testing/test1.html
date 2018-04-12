@@ -5,10 +5,6 @@
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">
-		#searchtext span {
-			text-decoration:underline;
-			background-color:yellow !important;    
-		}
 
 	</style>
 	<script src="aut/libs/jquery-3.3.1.min.js"></script>
@@ -16,7 +12,9 @@
 	<link rel="stylesheet" href="bootstrap-4.0.0-dist/css/bootstrap.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
-	<script src="aut/autTracking.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script>
+	
 </head>
 <body id="home" data-spy="scroll" data-target="#myScrollspy" data-offset="20">
 <h2 class="display-2" id"brand" >Yesterday's paper</h2>
@@ -35,12 +33,6 @@
 	</ul>
 
 	<button type="button" class="btn btn-primary mx-1" data-toggle="modal" data-target="#subModal">Subscribe</button>
-	
-	<form class="form-inline float-right mx-1 ml-auto" action="">
-		<input class="form-control" type="text" placeholder="Search">
-		<button class="btn btn-primary" type="submit" id"search">Search</button>
-	</form>
-
 </nav>
 
 <div class="container-fluid mt-5">
@@ -70,7 +62,7 @@
 			<div id="section1" class="card bg-success">
 				<div class="card-body">
 					<h3 class="card-title">Tricky carpenters</h3>
-					<p class="card-text" id="searchtext">
+					<p class="card-text context" id="searchtext">
 						Fifty months between can place these bad but tricky carpenters. Whichever throne influentially shall wobble which offer. The only uninterested but disturbed patch does command a few neither funny nor redundant circles. Another cat moodily can clip a lot of magics. A million nice kittys potentially examined that familiar frame. Different rabid yet earthy feathers does harm this good notebook. Any mixed but juicy straw thickly repairs another amused wish. Little enchanted fogs explains the silent cat. A lot of caps grossly can drop a gazillion sons. A gazillion flaky but lively wools extensively did scold different salty clubs. Zero grandmothers rushed zero heads. Which robust caption interminably can enjoy those fogs. Which class disorderly shall squeal sufficient both fancy and imperfect juices. Fifty limping and safe limits nicely employs another neither humdrum nor slow scale. Another humdrum and deeply pollution obtrusively may wreck these grim reapers. Such rakes encourages each insurance. The glove clearly might transport two neither military nor jobless thrones. Zero squalid cakes had reflected fifty vegetables. A education developmentally sneezes several neither fierce nor cheap linens. Several pans grossly can step one vacuous yet hilarious approval. 
 					</p>
 				</div>
@@ -79,7 +71,7 @@
 			<div id="section2" class="card mt-5 bg-warning"> 
 				<div class="card-body">
 					<h3 class="card-title">A million present crackers</h3>
-					<p class="card-text">
+					<p class="card-text context">
 						The spade previously did repeat a million present crackers. Much new kisss exorbitantly must pray each stream. A gazillion boys promptly adds a grain. Such mute celerys forever does copy those next sodas. Few quickest yet trite summers troubles several meals. That neither uneven nor tense appliance may stay two neither absorbed nor gusty jams. Different dysfunctional fights can repeat different celerys. One either loutish or humdrum unit neglectfully could arrange many special mornings. The same dizzy but good umbrella persuasively pated a little bawdy dirts. Whichever honey shall order my eight yet precious meal. Other either curved or scarce elbows carves these moneys. My vacuous but heavy hill decreasingly does breathe so useless cabbages. The neither adjoining nor old-fashioned cart leisurely must strip zero loafs. Sufficient neither humdrum nor cooing quicksands intermittently might enter which nonchalant and rigid flower. Few both vacuous and rude furnitures terrifyed a million approvals. Another team nearby must long a gruesome structure. That boundary capriciously shall face fifty economic sweaters. Whatever anger claims the number. A gazillion educations timidly should offer such tests. Other moons ideally can explain a joke. 
 					</p>
 				</div>
@@ -150,18 +142,8 @@
  </div><!--End of container -->
 
 <script>
-		$(document).ready(function(){
-			$('[data-toggle="tooltip"]').tooltip();   
-		
-
-	$('#search').keyup(function(){
-         var page = $('#searchtext');
-         var pageText = page.text().replace("<span>","").replace("</span>");
-         var searchedText = $('#search').val();
-         var theRegEx = new RegExp("("+searchedText+")", "igm");    
-         var newHtml = pageText.replace(theRegEx ,"<span>$1</span>");
-         page.html(newHtml);
-	});
+	$(document).ready(function(){
+		$('[data-toggle="tooltip"]').tooltip();   
 	});
 </script>
 </body>
