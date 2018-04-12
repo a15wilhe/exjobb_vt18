@@ -1,5 +1,5 @@
 <?php
-        $fp = fopen("performance.txt", "a");
+        $fp = fopen("performance-1.txt", "a");
         fputs ($fp, $_POST['performance']. "\n");
         fclose ($fp);
 ?>

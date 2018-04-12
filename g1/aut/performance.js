@@ -9,7 +9,7 @@ $( document ).ready(function() {
         //ajax to server
         $.ajax({
             type: 'POST',
-            url: "http://192.168.10.2/exjobb_vt18/performance/performance.php",
+            url: "http://192.168.10.2/exjobb_vt18/performance/performance-1.php",
             data: { performance: diffTime + ", " + page }
         });
     }
