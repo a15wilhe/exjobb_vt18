@@ -14,6 +14,8 @@ var hoverlastTarget;
 var hoverStartTime;
 var hoverTargetID;
 var hoverTargetText;
+var locationX;
+var locationY;
 
 $( document ).ready(function() {
 
