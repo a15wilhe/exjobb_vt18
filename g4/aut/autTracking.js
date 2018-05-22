@@ -14,8 +14,6 @@ var hoverlastTarget;
 var hoverStartTime;
 var hoverTargetID;
 var hoverTargetText;
-var locationX;
-var locationY;
 
 $( document ).ready(function() {
 
@@ -55,7 +53,6 @@ window.addEventListener('resize', function(){
     var winScreenH = screen.height;
     ++resizes;
     
-
     setTimeout(function() {
         if (resizeBool) {
             resizeBool = false;
@@ -74,8 +71,6 @@ window.addEventListener('resize', function(){
         }
         setTimeout(function() {resizeBool = true;}, 4000);
     }, 10000);
-    
-    
 });
 
 //TRACK MOUSE CLICK
@@ -128,6 +123,7 @@ function keypress(e) {
     }
 }
 
+//TRACK MOUSE SCROLL
 window.addEventListener('scroll', function ( event ) {
 	window.clearTimeout( isScrolling );
 	isScrolling = setTimeout(function() {
@@ -142,6 +138,30 @@ window.addEventListener('scroll', function ( event ) {
         });
 	}, 140);
 }, false);
+
+//TRACK MOUSEMOVEMENT 
+document.body.addEventListener("mousemove", function(e) { 
+    var event = e || window.event;
+    window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+    window.mouseY = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+}, true);
+
+function mousemoveTracking() {
+    $.ajax({
+        type: 'POST',
+        url: 'aut/trackedUserData/mousemove.php',
+        data: { href: escape(HREF),
+                mouseX: escape(window.mouseX),
+                mouseY: escape(window.mouseY),
+                ww: escape(winInnerWNew),
+                wh: escape(winInnerHNew)
+        }	
+    });
+}
+
+window.onload = function() {
+    var interval = setInterval(mousemoveTracking, 100);
+}
 
 //TRACK HOVER OVER 100MS
 document.body.addEventListener("mouseenter", function(e) { 
@@ -161,35 +181,5 @@ document.body.addEventListener("mouseenter", function(e) {
     hoverTargetID = e.target.id;
     hoverTargetText = $(event.target).text().slice(0,40);
 }, true);
-
-//TRACK COMPRESSION/SELECTION OF MOUSEMOVE
-document.body.addEventListener("mousemove", function(e) { 
-    var event = e || window.event;
-    window.mouseX = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-    window.mouseY = event.clientY + document.body.scrollTop + document.documentElement.scrollTop;
-    
-    //Get pos
-    var locationX = window.mouseX;
-    var locationY = window.mouseY;
-
-    //wait 40ms
-    setTimeout(function(){ 
-        //compare same pos, then ajax
-        if (window.mouseX == locationX && window.mouseY == locationY) {
-            console.log(window.mouseX + " - " + locationX + " - " + window.mouseY + " - " + locationY);
-             $.ajax({
-                type: 'POST',
-                url: 'aut/trackedUserData/mousemove.php',
-                data: { href: escape(HREF),
-                        mouseX: escape(window.mouseX),
-                        mouseY: escape(window.mouseY),
-                        ww: escape(winInnerWNew),
-                        wh: escape(winInnerHNew)
-                }
-            });	 
-        }
-    }, 40);
-    
-}, true); 
 
 });//End of document.ready
